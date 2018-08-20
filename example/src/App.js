@@ -55,7 +55,7 @@ class App extends Component {
         name: 'series-3',
         type: 'column',
         data: [62, 12, 45, 55, 76, 41, 23, 43]
-        }],
+      }],
       optionsRadial: {
         plotOptions: {
           radialBar: {
@@ -185,13 +185,13 @@ class App extends Component {
       seriesBar: [{
         name: 'blue',
         data: [32]
-        }, {
+      }, {
         name: 'green',
         data: [41]
-        }, {
+      }, {
         name: 'yellow',
         data: [12]
-        }, {
+      }, {
         name: 'red',
         data: [65]
       }]

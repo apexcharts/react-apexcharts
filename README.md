@@ -61,7 +61,7 @@ This will render the following chart
 Simple! Just change the `series` or any `option` and it will automatically re-render the chart.
 <p align="center"><a href="#"><img src="https://apexcharts.com/media/react-chart-updation.gif"></a></p>
 
-
+View this example on <a href="https://codesandbox.io/s/mzzq3yqjqj">codesandbox</a>
 
 ## Props
 - __series__ - `Array` (required)
