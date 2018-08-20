@@ -63,6 +63,40 @@ Simple! Just change the `series` or any `option` and it will automatically re-re
 
 
 
+## Props
+- __series__ - `Array` (required)
+The series is an array which accepts object in the following format
+series: [{
+  name: 'visitors'
+  data: [23, 44, 56, 75, 56]
+}]
+The `data` property inside series accepts a variation of formats. To know more about the format of dataSeries, checkout [Series](https://apexcharts.com/docs/series/) docs on the website.
+
+- __type__ - `String` (required)
+chart type, possible values :
+    - `line`
+    - `area`
+    - `bar`
+    - `pie`
+    - `donut`
+    - `scatter`
+    - `bubble`
+    - `heatmap`
+    - `radialBar`
+
+- __width__ -  `Number` || `String`
+
+  Possible values for width can be `100%` or `400px` or just 400
+
+- __height__ -  `Number` || `String`
+
+  Possible values for width can be `100%` or `300px` or just 300
+
+- __options__ - `Object`
+
+  Charts's configuration object, see options on [API (Reference)](https://apexcharts.com/docs/options/chart/type/)
+
+
 ## How to call methods of ApexCharts programatically?
 Sometimes, you may want to call other methods of the core ApexCharts library, and you can do so on `this.$apexcharts` global variable directly
 
