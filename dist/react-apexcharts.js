@@ -68,11 +68,11 @@ export default class Charts extends Component {
   }
 
   componentWillUnmount() {
-    this.state.chart.exec(this.props.options.chart.id, 'destroy');
+    this.state.chart.destroy();
   }
 }
 
-Charts.PropTypes = {
+Charts.propTypes = {
   type: PropTypes.string.isRequired,
   width: PropTypes.any,
   height: PropTypes.any,

@@ -13,7 +13,7 @@ export default class Charts extends Component {
 
   render() {
     return (
-      <div ref={this.chartRef}></div>
+      React.createElement("div", {ref: this.chartRef})
     );
   }
 
@@ -68,14 +68,14 @@ export default class Charts extends Component {
   }
 
   componentWillUnmount() {
-    this.state.chart.exec(this.props.options.chart.id, 'destroy');
+    this.state.chart.destroy();
   }
 }
 
-Charts.PropTypes = {
+Charts.propTypes = {
   type: PropTypes.string.isRequired,
-  series: PropTypes.array.isRequired,
-  options: PropTypes.object.isRequired,
   width: PropTypes.any,
-  height: PropTypes.any
+  height: PropTypes.any,
+  series: PropTypes.array.isRequired,
+  options: PropTypes.object.isRequired
 }
