@@ -12,8 +12,12 @@ export default class Charts extends Component {
   }
 
   render() {
+    const { type, width, height, series, options, ...props } = this.props
     return (
-      React.createElement("div", {ref: this.chartRef})
+      React.createElement("div", {
+        ref: this.chartRef,
+        ...props
+      })
     );
   }
 
