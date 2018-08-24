@@ -98,11 +98,11 @@ chart type, possible values :
 
 
 ## How to call methods of ApexCharts programatically?
-Sometimes, you may want to call other methods of the core ApexCharts library, and you can do so on `this.$apexcharts` global variable directly
+Sometimes, you may want to call other methods of the core ApexCharts library, and you can do so on `ApexCharts` global variable directly
 
 Example
 ```js
-this.$apexcharts.exec('reactchart-example', 'updateSeries', [{
+Apexcharts.exec('reactchart-example', 'updateSeries', [{
   data: [40, 55, 65, 11, 23, 44, 54, 33]
 }])
 ```
@@ -149,6 +149,15 @@ npm run start
 ```bash
 npm run build
 ```
+
+## Issues
+Recently, some users faced an issue while bundling their app along with React-ApexCharts.
+```bash
+Failed to minify the code from this file:
+./node_modules/react-apexcharts/dist/react-apexcharts.js
+```
+If you get such an error, please get the latest version of React-ApexCharts >= 1.0.4 and try to compile your app again.
+
 
 ## License
 React-ApexCharts is released under MIT license. You are free to use, modify and distribute this software, as long as the copyright header is left intact.
