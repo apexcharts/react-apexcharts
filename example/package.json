@@ -1,5 +1,5 @@
 {
-  "name": "myapp",
+  "name": "react-apexcharts-example",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -12,7 +12,10 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
+    "test": "jest",
     "eject": "react-scripts eject"
+  },
+  "devDependencies": {
+    "react-test-renderer": "^16.4.2"
   }
 }
