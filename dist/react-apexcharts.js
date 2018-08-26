@@ -6,73 +6,67 @@ export default class Charts extends Component {
   constructor(props) {
     super(props);
     this.chartRef = React.createRef();
-    this.state = {
-      chart: null
-    }
   }
 
   render() {
-    const { type, width, height, series, options, ...props } = this.props
-    return (
-      React.createElement("div", {
-        ref: this.chartRef,
-        ...props
-      })
-    );
+    const { type, width, height, series, options, ...props } = this.props;
+    return React.createElement('div', {
+      ref: this.chartRef,
+      ...props
+    });
   }
 
   componentDidMount() {
+    const { type, height, width, series, options } = this.props;
     const newOptions = {
       chart: {
-        type: this.props.type ? this.props.type : 'line',
-        height: this.props.height ? this.props.height : 'auto',
-        width: this.props.width ? this.props.width : '100%'
+        type,
+        height,
+        width
       },
-      series: this.props.series
-    }
+      series
+    };
 
-    const config = ApexCharts.merge(this.props.options, newOptions);
-    const chart = new ApexCharts(this.chartRef.current, config)
-    chart.render().then(() => {
-      this.setState({
-        chart
-      })
-    })
+    const config = ApexCharts.merge(options, newOptions);
+    this.chart = new ApexCharts(this.chartRef.current, config);
+    this.chart.render();
   }
 
-
   componentDidUpdate(prevProps) {
-    const props = this.props;
-    
-    if (JSON.stringify(prevProps.options) !== JSON.stringify(props.options) || JSON.stringify(prevProps.series) !== JSON.stringify(this.props.series)) {
+    const { options, type, width, height, series } = this.props;
+
+    if (
+      JSON.stringify(prevProps.options) !== JSON.stringify(options) ||
+      JSON.stringify(prevProps.series) !== JSON.stringify(series)
+    ) {
       const newOptions = {
         chart: {
-          type: props.type ? props.type : 'line',
-          width: props.width ? props.width : '100%',
-          height: props.height ? props.height : 'auto'
+          type,
+          width,
+          height
         },
-        series: props.series
-      }
-  
-      const config = ApexCharts.merge(props.options, newOptions);
-  
+        series
+      };
+
+      const config = ApexCharts.merge(options, newOptions);
+
       // series is not changed,but options are changed
-      if (JSON.stringify(props.series) === JSON.stringify(prevProps.series)) {
-        this.state.chart.updateOptions(config)
+      if (JSON.stringify(series) === JSON.stringify(prevProps.series)) {
+        this.chart.updateOptions(config);
       }
       // options are not changed, just the series is changed
-      else if (JSON.stringify(props.options) === JSON.stringify(prevProps.options)) {
-        this.state.chart.updateSeries(props.series)
-  
-      // both maybe changed
+      else if (JSON.stringify(options) === JSON.stringify(prevProps.options)) {
+        this.chart.updateSeries(series);
+
+        // both maybe changed
       } else {
-        this.state.chart.updateOptions(config)
+        this.chart.updateOptions(config);
       }
     }
   }
 
   componentWillUnmount() {
-    this.state.chart.destroy();
+    this.chart.destroy();
   }
 }
 
@@ -82,4 +76,10 @@ Charts.propTypes = {
   height: PropTypes.any,
   series: PropTypes.array.isRequired,
   options: PropTypes.object.isRequired
-}
+};
+
+Charts.defaultProps = {
+  type: 'line',
+  width: '100%',
+  height: 'auto'
+};
