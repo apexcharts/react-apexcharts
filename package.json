@@ -4,7 +4,8 @@
   "description": "React.js wrapper for ApexCharts",
   "main": "dist/react-apexcharts.min.js",
   "scripts": {
-    "build": "gulp"
+    "build": "gulp",
+    "test": "jest"
   },
   "keywords": [
     "react-charts",
@@ -23,20 +24,26 @@
   },
   "license": "MIT",
   "dependencies": {
-    "apexcharts": "^1.3.12"
+    "apexcharts": "^1.3.16"
   },
   "peerDependencies": {
     "react": ">=0.13",
     "prop-types": "^15.5.7"
   },
   "devDependencies": {
+    "babel-jest": "^23.4.2",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
     "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
     "gulp": "^3.9.1",
     "gulp-babel": "^6.1.2",
     "gulp-concat": "^2.6.1",
     "gulp-react": "^3.1.0",
     "gulp-uglify": "^3.0.0",
-    "react": "^15.3.1"
+    "jest": "^23.5.0",
+    "react": "^16.3.0",
+    "react-dom": "^16.3.0",
+    "react-test-renderer": "^16.4.2"
   }
 }

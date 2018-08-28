@@ -44,10 +44,7 @@ export default class Charts extends Component {
     const currentOptions = JSON.stringify(options)
     const currentSeries = JSON.stringify(series)
 
-    if (
-      prevOptions !== currentOptions ||
-      prevSeries !== currentSeries
-    ) {
+    if (prevOptions !== currentOptions || prevSeries !== currentSeries) {
       // series is not changed,but options are changed
       if (prevSeries !== currentSeries) {
         this.chart.updateOptions(this.getConfig());
