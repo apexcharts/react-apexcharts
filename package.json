@@ -23,7 +23,7 @@
   },
   "license": "MIT",
   "dependencies": {
-    "apexcharts": "^1.3.12"
+    "apexcharts": "^1.3.16"
   },
   "peerDependencies": {
     "react": ">=0.13",
