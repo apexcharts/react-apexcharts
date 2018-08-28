@@ -6,6 +6,7 @@ export default class Charts extends Component {
   constructor(props) {
     super(props);
     this.chartRef = React.createRef();
+    this.chart = null
   }
 
   render() {
@@ -17,6 +18,11 @@ export default class Charts extends Component {
   }
 
   componentDidMount() {
+    this.chart = new ApexCharts(this.chartRef.current, this.getConfig());
+    this.chart.render();
+  }
+
+  getConfig() {
     const { type, height, width, series, options } = this.props;
     const newOptions = {
       chart: {
@@ -27,46 +33,38 @@ export default class Charts extends Component {
       series
     };
 
-    const config = ApexCharts.merge(options, newOptions);
-    this.chart = new ApexCharts(this.chartRef.current, config);
-    this.chart.render();
+    return ApexCharts.merge(options, newOptions);
   }
 
   componentDidUpdate(prevProps) {
+    if (!this.chart) return null;
     const { options, type, width, height, series } = this.props;
+    const prevOptions = JSON.stringify(prevProps.options)
+    const prevSeries = JSON.stringify(prevProps.series)
+    const currentOptions = JSON.stringify(options)
+    const currentSeries = JSON.stringify(series)
 
     if (
-      JSON.stringify(prevProps.options) !== JSON.stringify(options) ||
-      JSON.stringify(prevProps.series) !== JSON.stringify(series)
+      prevOptions !== currentOptions ||
+      prevSeries !== currentSeries
     ) {
-      const newOptions = {
-        chart: {
-          type,
-          width,
-          height
-        },
-        series
-      };
-
-      const config = ApexCharts.merge(options, newOptions);
-
       // series is not changed,but options are changed
-      if (JSON.stringify(series) === JSON.stringify(prevProps.series)) {
-        this.chart.updateOptions(config);
+      if (prevSeries !== currentSeries) {
+        this.chart.updateOptions(this.getConfig());
       }
       // options are not changed, just the series is changed
-      else if (JSON.stringify(options) === JSON.stringify(prevProps.options)) {
+      else if (prevOptions !== currentOptions) {
         this.chart.updateSeries(series);
 
         // both maybe changed
       } else {
-        this.chart.updateOptions(config);
+        this.chart.updateOptions(this.getConfig());
       }
     }
   }
 
   componentWillUnmount() {
-    this.chart.destroy();
+    if (this.chart && typeof this.chart.destroy === 'function') this.chart.destroy();
   }
 }
 
