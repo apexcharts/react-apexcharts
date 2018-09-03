@@ -45,23 +45,22 @@ export default class Charts extends Component {
 
   componentDidUpdate(prevProps) {
     if (!this.chart) return null;
-    const { options, type, width, height, series } = this.props;
+    const { options, series } = this.props;
     const prevOptions = JSON.stringify(prevProps.options)
     const prevSeries = JSON.stringify(prevProps.series)
     const currentOptions = JSON.stringify(options)
     const currentSeries = JSON.stringify(series)
 
     if (prevOptions !== currentOptions || prevSeries !== currentSeries) {
-      // series is not changed,but options are changed
-      if (prevSeries !== currentSeries) {
+      if (prevSeries === currentSeries) {
+        // series is not changed,but options are changed
         this.chart.updateOptions(this.getConfig());
       }
-      // options are not changed, just the series is changed
-      else if (prevOptions !== currentOptions) {
+      else if (prevOptions === currentOptions) {
+        // options are not changed, just the series is changed
         this.chart.updateSeries(series);
-
-        // both maybe changed
       } else {
+        // both might be changed
         this.chart.updateOptions(this.getConfig());
       }
     }

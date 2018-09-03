@@ -64,38 +64,15 @@ Simple! Just change the `series` or any `option` and it will automatically re-re
 View this example on <a href="https://codesandbox.io/s/mzzq3yqjqj">codesandbox</a>
 
 ## Props
-- __series__ - `Array` (required)
-The series is an array which accepts object in the following format
-series: [{
-  name: 'visitors'
-  data: [23, 44, 56, 75, 56]
-}]
-The `data` property inside series accepts a variation of formats. To know more about the format of dataSeries, checkout [Series](https://apexcharts.com/docs/series/) docs on the website.
 
-- __type__ - `String` (required)
-chart type, possible values :
-    - `line`
-    - `area`
-    - `bar`
-    - `pie`
-    - `donut`
-    - `scatter`
-    - `bubble`
-    - `heatmap`
-    - `radialBar`
 
-- __width__ -  `Number` || `String`
-
-  Possible values for width can be `100%` or `400px` or just 400
-
-- __height__ -  `Number` || `String`
-
-  Possible values for width can be `100%` or `300px` or just 300
-
-- __options__ - `Object`
-
-  Charts's configuration object, see options on [API (Reference)](https://apexcharts.com/docs/options/chart/type/)
-
+| Prop        | Type           | Description  |
+| ------------- |-------------| -----|
+| **series** | Array | The series is an array which accepts object in the following format. To know more about the format of dataSeries, checkout [Series](https://apexcharts.com/docs/series/) docs on the website. |
+| **type** | String  | `line`, `area`, `bar`, `pie`, `donut`, `scatter`, `bubble`, `heatmap`, `radialBar`  |
+| **width** | Number/String  | Possible values for width can be `100%` or `400px` or 400 |
+| **height** | Number/String | Possible values for width can be `100%` or `300px` or 300 |
+| **options** | Object | The configuration object, see options on [API (Reference)](https://apexcharts.com/docs/options/chart/type/) |
 
 ## How to call methods of ApexCharts programatically?
 Sometimes, you may want to call other methods of the core ApexCharts library, and you can do so on `ApexCharts` global variable directly
@@ -149,15 +126,6 @@ npm run start
 ```bash
 npm run build
 ```
-
-## Issues
-Recently, some users faced an issue while bundling their app along with React-ApexCharts.
-```bash
-Failed to minify the code from this file:
-./node_modules/react-apexcharts/dist/react-apexcharts.js
-```
-If you get such an error, please get the latest version of React-ApexCharts >= 1.0.4 and try to compile your app again.
-
 
 ## License
 React-ApexCharts is released under MIT license. You are free to use, modify and distribute this software, as long as the copyright header is left intact.

@@ -5,6 +5,7 @@ import Column from './chart-types/Column';
 import Line from './chart-types/Line';
 import Donut from './chart-types/Donut';
 import RadialBar from './chart-types/RadialBar';
+import ChartUpdate from './ChartUpdate';
 
 class App extends Component {
 
@@ -33,6 +34,7 @@ class App extends Component {
           <option value="column" >Column</option>
           <option value="radialbar" >RadialBar</option>
           <option value="donut" >Donut</option>
+          <option value="updateExample" >Chart Update Example</option>
         </select>
 
         { this.state.selectedChart === 'area' ? (<Area></Area>) : null}
@@ -41,6 +43,7 @@ class App extends Component {
         { this.state.selectedChart === 'column' ? (<Column></Column>) : null}
         { this.state.selectedChart === 'radialbar' ? (<RadialBar></RadialBar>) : null}
         { this.state.selectedChart === 'donut' ? (<Donut></Donut>) : null}
+        { this.state.selectedChart === 'updateExample' ? (<ChartUpdate></ChartUpdate>) : null}
       </div>
     );
   }

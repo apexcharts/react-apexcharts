@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Chart from 'react-apexcharts'
 
-class ChartUpdation extends Component {
+class ChartUpdate extends Component {
 
   constructor(props) {
     super(props);
@@ -222,7 +222,7 @@ class ChartUpdation extends Component {
     this.setState({
       seriesMixedChart: newMixedSeries,
       seriesBar: newBarSeries,
-      seriesRadial: [Math.floor(Math.random() * (90 - 50 + 1)) + 50]
+      seriesRadial: [Math.floor(Math.random() * (90 - 50 + 1)) + 50],
     })
   }
 
@@ -255,4 +255,4 @@ class ChartUpdation extends Component {
   }
 }
 
-export default ChartUpdation;
+export default ChartUpdate;
