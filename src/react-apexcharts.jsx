@@ -5,20 +5,27 @@ import PropTypes from 'prop-types';
 export default class Charts extends Component {
   constructor(props) {
     super(props);
-    this.chartRef = React.createRef();
+    if (React.createRef) {
+      this.chartRef = React.createRef();
+    } else {
+      this.setRef = el => this.chartRef = el;
+    }
     this.chart = null
   }
 
   render() {
     const { type, width, height, series, options, ...props } = this.props;
     return React.createElement('div', {
-      ref: this.chartRef,
+      ref: React.createRef
+        ? this.chartRef
+        : this.setRef,
       ...props
     });
   }
 
   componentDidMount() {
-    this.chart = new ApexCharts(this.chartRef.current, this.getConfig());
+    const current = React.createRef ? this.chartRef.current : this.chartRef;
+    this.chart = new ApexCharts(current, this.getConfig());
     this.chart.render();
   }
 
