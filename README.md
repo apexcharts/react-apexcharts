@@ -2,7 +2,7 @@
 
 <p align="center">
   <a href="https://github.com/apexcharts/react-apexcharts/blob/master/LICENSE"><img src="https://img.shields.io/badge/License-MIT-brightgreen.svg" alt="License"></a>
-  <!--<a href="https://travis-ci.com/apexcharts/react-apexcharts.js"><img src="https://api.travis-ci.com/apexcharts/react-apexcharts.js.svg?branch=master" alt="build" /></a>-->
+  <a href="https://travis-ci.com/apexcharts/react-apexcharts"><img src="https://api.travis-ci.com/apexcharts/react-apexcharts.svg?branch=master" alt="build" /></a>
   <a href="https://www.npmjs.com/package/react-apexcharts"><img src="https://img.shields.io/npm/v/react-apexcharts.svg" alt="ver"></a>
 </p>
 
@@ -18,9 +18,13 @@
 ## Download and Installation
 
 ##### Installing via npm
-[![NPM](https://nodei.co/npm/react-apexcharts.png?mini=true)](https://npmjs.org/package/react-apexcharts)
+
+```bash
+npm install react-apexcharts apexcharts
+```
 
 ## Usage
+
 ```js
 import Chart from 'react-apexcharts'
 ```
@@ -106,6 +110,7 @@ react-apexcharts/
 ```
 
 ## Development
+
 #### Install dependencies
 
 ```bash
@@ -113,6 +118,7 @@ npm install
 ```
 
 ## Running the example
+
 Basic example including update is included to show how to get started using ApexCharts with React easily.
 
 To run the examples,
@@ -123,9 +129,11 @@ npm run start
 ```
 
 #### Bundling
+
 ```bash
 npm run build
 ```
 
 ## License
+
 React-ApexCharts is released under MIT license. You are free to use, modify and distribute this software, as long as the copyright header is left intact.

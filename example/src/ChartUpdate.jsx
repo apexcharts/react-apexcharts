@@ -204,14 +204,14 @@ class ChartUpdate extends Component {
     const newMixedSeries = [];
     const newBarSeries = [];
 
-    this.state.seriesMixedChart.map((s) => {
+    this.state.seriesMixedChart.forEach((s) => {
       const data = s.data.map(() => {
         return Math.floor(Math.random() * (max - min + 1)) + min
       })
       newMixedSeries.push({ data: data, type: s.type })
     })
 
-    this.state.seriesBar.map((s) => {
+    this.state.seriesBar.forEach((s) => {
       const data = s.data.map(() => {
         return Math.floor(Math.random() * (180 - min + 1)) + min
       })

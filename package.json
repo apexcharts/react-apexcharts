@@ -24,10 +24,10 @@
   },
   "license": "MIT",
   "dependencies": {
-    "apexcharts": "^1.4.2",
     "prop-types": "^15.5.7"
   },
   "peerDependencies": {
+    "apexcharts": "^1.5.1",
     "react": ">=0.13"
   },
   "devDependencies": {
