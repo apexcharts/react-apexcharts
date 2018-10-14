@@ -7,9 +7,11 @@ class Donut extends Component {
     super(props);
 
     this.state = {
-      options: {},
-      series: [44, 55, 41, 17, 15],
-      labels: ['A', 'B', 'C', 'D', 'E']
+      options: {
+        labels: ['A', 'B', 'C', 'D', 'E']
+      },
+      series: [44, 55, 41, 17, 15]
+
     }
   }
 

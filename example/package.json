@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "apexcharts": "^2.0.9",
     "react": "^16.4.2",
-    "apexcharts": "^1.5.1",
-    "react-apexcharts": "^1.0.4",
+    "react-apexcharts": "^1.0.9",
     "react-dom": "^16.4.2",
     "react-scripts": "1.1.4"
   },

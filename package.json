@@ -27,7 +27,7 @@
     "prop-types": "^15.5.7"
   },
   "peerDependencies": {
-    "apexcharts": "^1.5.1",
+    "apexcharts": "^2.0.9",
     "react": ">=0.13"
   },
   "devDependencies": {

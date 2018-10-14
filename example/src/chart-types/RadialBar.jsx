@@ -8,6 +8,7 @@ class RadialBar extends Component {
 
     this.state = {
       options: {
+        labels: ['RadialBar'],
         plotOptions: {
           radialBar: {
               hollow: {
@@ -17,7 +18,6 @@ class RadialBar extends Component {
         },
       },
       series: [68],
-      labels: ['RadialBar']
     }
   }
 
