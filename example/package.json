@@ -3,11 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "apexcharts": "^2.0.9",
+    "apexcharts": "^2.2.2",
     "react": "^16.4.2",
     "react-apexcharts": "^1.0.9",
     "react-dom": "^16.4.2",
-    "react-scripts": "1.1.4"
+    "react-scripts": "^2.1.1"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -17,5 +17,11 @@
   },
   "devDependencies": {
     "react-test-renderer": "^16.4.2"
-  }
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
 }
