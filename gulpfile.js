@@ -19,7 +19,7 @@ gulp.task('prod', function () {
       es6module: true
     }))
     .pipe(babel({
-      presets: ['es2015'],
+      presets: ['es2015', 'react'],
       plugins: ['transform-object-rest-spread']
     }))
     .pipe(concat('react-apexcharts.min.js'))
@@ -28,4 +28,4 @@ gulp.task('prod', function () {
 });
 
 gulp.task('build', ['dev', 'prod']);
-gulp.task('default', ['dev']);
+gulp.task('default', ['dev', 'prod']);
