@@ -83,7 +83,7 @@ Sometimes, you may want to call other methods of the core ApexCharts library, an
 
 Example
 ```js
-Apexcharts.exec('reactchart-example', 'updateSeries', [{
+ApexCharts.exec('reactchart-example', 'updateSeries', [{
   data: [40, 55, 65, 11, 23, 44, 54, 33]
 }])
 ```
