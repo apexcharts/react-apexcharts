@@ -16,15 +16,6 @@ module.exports = {
   input: './src/react-apexcharts.jsx',
   output: [{
     name: 'ReactApexChart', 
-    file: 'dist/react-apexcharts.min.js',
-    format: 'es',
-    globals: {
-      react: "React",
-      apexcharts: "ApexCharts",
-      'prop-types': "PropTypes"
-    }
-  }, {
-    name: 'ReactApexChart', 
     file: 'dist/react-apexcharts.iife.min.js',
     format: 'iife',
     globals: {

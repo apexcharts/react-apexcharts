@@ -4,7 +4,7 @@
   "description": "React.js wrapper for ApexCharts",
   "main": "dist/react-apexcharts.min.js",
   "scripts": {
-    "build": "rollup -c rollup.config.js",
+    "build": "concurrently \"rollup -c rollup.config.js\" \"gulp\"",
     "test": "jest"
   },
   "keywords": [
@@ -33,8 +33,16 @@
   "devDependencies": {
     "babel-core": "^6.26.3",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-es2015": "^6.24.1",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-3": "^6.24.1",
+    "concurrently": "^4.1.0",
+    "gulp": "^3.9.1",
+    "gulp-babel": "^6.1.2",
+    "gulp-concat": "^2.6.1",
+    "gulp-react": "^3.1.0",
+    "gulp-uglify": "^3.0.0",
     "jest": "^23.6.0",
     "react": "^16.6.3",
     "react-dom": "^16.6.3",
