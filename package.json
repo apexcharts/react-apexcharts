@@ -1,6 +1,6 @@
 {
   "name": "react-apexcharts",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "React.js wrapper for ApexCharts",
   "main": "dist/react-apexcharts.min.js",
   "scripts": {
