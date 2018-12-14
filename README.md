@@ -67,6 +67,34 @@ Simple! Just change the `series` or any `option` and it will automatically re-re
 
 View this example on <a href="https://codesandbox.io/s/mzzq3yqjqj">codesandbox</a>
 
+
+**Important:** While updating the options, make sure to update the outermost property even when you need to update the nested property.
+
+✅ Do this
+```javascript
+this.chartOptions = {...this.chartOptions, ...{
+    xaxis: {
+        labels: {
+           style: {
+             colors: ['red']
+           }
+        }
+    }
+}}
+```
+
+❌ Not this
+```javascript
+this.chartOptions.xaxis = {
+    labels: {
+        style: {
+          colors: ['red']
+        }
+    }
+}}
+```
+
+
 ## Props
 
 
