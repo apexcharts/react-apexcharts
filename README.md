@@ -72,26 +72,23 @@ View this example on <a href="https://codesandbox.io/s/mzzq3yqjqj">codesandbox</
 
 ✅ Do this
 ```javascript
-this.chartOptions = {...this.chartOptions, ...{
+this.setState({
+  options: {
+    ...this.state.options,
     xaxis: {
-        labels: {
-           style: {
-             colors: ['red']
-           }
-        }
+      ...this.state.options.xaxis, {
+        categories: ['X1', 'X2', 'X3']
+      }
     }
-}}
+  }
+})
 ```
 
 ❌ Not this
 ```javascript
-this.chartOptions.xaxis = {
-    labels: {
-        style: {
-          colors: ['red']
-        }
-    }
-}}
+this.setState({
+  options.xaxis.categories: ['X1', 'X2', 'X3']
+})
 ```
 
 
