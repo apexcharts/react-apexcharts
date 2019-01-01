@@ -67,6 +67,31 @@ Simple! Just change the `series` or any `option` and it will automatically re-re
 
 View this example on <a href="https://codesandbox.io/s/mzzq3yqjqj">codesandbox</a>
 
+
+**Important:** While updating the options, make sure to update the outermost property even when you need to update the nested property.
+
+✅ Do this
+```javascript
+this.setState({
+  options: {
+    ...this.state.options,
+    xaxis: {
+      ...this.state.options.xaxis, {
+        categories: ['X1', 'X2', 'X3']
+      }
+    }
+  }
+})
+```
+
+❌ Not this
+```javascript
+this.setState({
+  options.xaxis.categories: ['X1', 'X2', 'X3']
+})
+```
+
+
 ## Props
 
 
