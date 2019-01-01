@@ -2,6 +2,8 @@ import ApexCharts from 'apexcharts';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
+window.ApexCharts = ApexCharts;
+
 export default class Charts extends Component {
   constructor(props) {
     super(props);
