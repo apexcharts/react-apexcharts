@@ -1,16 +1,15 @@
-import React, { Component } from 'react';
-import Area from './chart-types/Area';
-import Bar from './chart-types/Bar';
-import Column from './chart-types/Column';
-import Line from './chart-types/Line';
-import Donut from './chart-types/Donut';
-import RadialBar from './chart-types/RadialBar';
-import ChartUpdate from './ChartUpdate';
+import React, { Component } from 'react'
+import Area from './chart-types/Area'
+import Bar from './chart-types/Bar'
+import Column from './chart-types/Column'
+import Line from './chart-types/Line'
+import Donut from './chart-types/Donut'
+import RadialBar from './chart-types/RadialBar'
+import ChartUpdate from './ChartUpdate'
 
 class App extends Component {
-
-  constructor(props) {
-    super(props);
+  constructor (props) {
+    super(props)
 
     this.changeChart = this.changeChart.bind(this)
 
@@ -19,12 +18,11 @@ class App extends Component {
     }
   }
 
-  changeChart(e) {
-    this.setState({selectedChart: e.target.value});
+  changeChart (e) {
+    this.setState({selectedChart: e.target.value})
   }
 
-  render() {
-
+  render () {
     return (
       <div className="app">
         <select id="lang" value={this.state.selectedChart} onChange={this.changeChart}>
@@ -45,8 +43,8 @@ class App extends Component {
         { this.state.selectedChart === 'donut' ? (<Donut></Donut>) : null}
         { this.state.selectedChart === 'updateExample' ? (<ChartUpdate></ChartUpdate>) : null}
       </div>
-    );
+    )
   }
 }
 
-export default App;
+export default App

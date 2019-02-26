@@ -38,6 +38,8 @@
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-3": "^6.24.1",
     "concurrently": "^4.1.0",
+    "eslint": "^5.14.1",
+    "eslint-plugin-react": "^7.12.4",
     "gulp": "^3.9.1",
     "gulp-babel": "^6.1.2",
     "gulp-concat": "^2.6.1",
