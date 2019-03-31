@@ -27,5 +27,10 @@ gulp.task('prod', function () {
     .pipe(gulp.dest('./dist/'));
 });
 
-gulp.task('build', ['dev', 'prod']);
-gulp.task('default', ['dev', 'prod']);
+gulp.task('types', function () {
+  return gulp.src(['./types/react-apexcharts.d.ts'])
+    .pipe(gulp.dest('./dist/'))
+})
+
+gulp.task('build', ['dev', 'prod', 'types']);
+gulp.task('default', ['dev', 'prod', 'types']);
