@@ -129,7 +129,7 @@ react-apexcharts/
 │   ├── src/
 │   ├── public/
 │   ├── package.json
-│   └── REAMDE.md
+│   └── README.md
 └── src/
     └── react-apexcharts.jsx
 ```
