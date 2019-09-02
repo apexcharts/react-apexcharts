@@ -5,7 +5,7 @@
  */
 declare module "react-apexcharts" {
     interface Props {
-        type?: "line" | "area" | "bar" | "histogram" | "pie" | "donut" |
+        type?: "line" | "area" | "bar" | "histogram" | "pie" | "donut" | "rangeBar" |
             "radialBar" | "scatter" | "bubble" | "heatmap" | "candlestick" | "radar",
         series?: Array<any>,
         width?: string | number,
