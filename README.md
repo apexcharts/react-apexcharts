@@ -76,9 +76,8 @@ this.setState({
   options: {
     ...this.state.options,
     xaxis: {
-      ...this.state.options.xaxis, {
-        categories: ['X1', 'X2', 'X3']
-      }
+      ...this.state.options.xaxis,
+      categories: ['X1', 'X2', 'X3']
     }
   }
 })
