@@ -27,19 +27,21 @@ export default class Charts extends Component {
 
   componentDidMount () {
     const current = React.createRef ? this.chartRef.current : this.chartRef
-    this.chart = new ApexCharts(current, this.getConfig())
+    this.chart = new ApexCharts(current, this.getConfig(this.props))
     this.chart.render()
   }
 
-  getConfig () {
-    const { type, height, width, series, options } = this.props
+  getConfig ({ type, height, width, series, options }) {
     const newOptions = {
       chart: {
         type,
         height,
         width
-      },
-      series
+      }
+    }
+
+    if (series) {
+      newOptions.series = series;
     }
 
     return this.extend(options, newOptions)
@@ -107,8 +109,13 @@ export default class Charts extends Component {
 
     if (prevOptions !== currentOptions || prevSeries !== currentSeries) {
       if (prevSeries === currentSeries) {
-        // series is not changed,but options are changed
-        this.chart.updateOptions(this.getConfig())
+        // series is not changed, but options are changed
+        const configProps = Object.assign({}, this.props)
+        if (configProps.series) {
+          // exclude series since it hasn't changed
+          delete configProps.series
+        }
+        this.chart.updateOptions(this.getConfig(configProps))
       } else if (prevOptions === currentOptions) {
         // options are not changed, just the series is changed
         this.chart.updateSeries(series)
