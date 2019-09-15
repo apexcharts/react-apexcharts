@@ -6,6 +6,7 @@
   "types": "types/react-apexcharts.d.ts",
   "scripts": {
     "build": "concurrently \"rollup -c rollup.config.js\" \"gulp\"",
+    "dev-build": "concurrently \"rollup -c rollup.config.js\" \"gulp devBuild\"",
     "test": "jest"
   },
   "keywords": [
