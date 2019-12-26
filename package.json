@@ -28,7 +28,7 @@
     "prop-types": "^15.5.7"
   },
   "peerDependencies": {
-    "apexcharts": "^3.6.6",
+    "apexcharts": "^3.11.2",
     "react": ">=0.13"
   },
   "devDependencies": {
@@ -51,9 +51,8 @@
     "react": "^16.6.3",
     "react-dom": "^16.6.3",
     "react-test-renderer": "^16.6.3",
-    "rollup": "^0.58.2",
+    "rollup": "1.27.14",
     "rollup-plugin-babel": "^3.0.4",
-    "rollup-plugin-commonjs": "^9.2.0",
     "rollup-plugin-node-resolve": "^3.4.0",
     "rollup-plugin-postcss": "^1.6.1",
     "rollup-plugin-uglify": "^3.0.0"
