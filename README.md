@@ -154,6 +154,14 @@ npm run start
 
 #### Bundling
 
+##### To build for Development
+
+```bash
+npm run dev-build
+```
+
+##### To build for Production
+
 ```bash
 npm run build
 ```
