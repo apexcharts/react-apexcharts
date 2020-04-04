@@ -1,4 +1,4 @@
-const { src, dest, series, parallel } = require('gulp');
+const { src, dest, parallel } = require('gulp');
 const react = require('gulp-react');
 const concat = require('gulp-concat');
 const uglify = require('gulp-uglify');
@@ -38,5 +38,9 @@ function types() {
   );
 }
 
-exports.build = parallel(dev, prod, types);
-exports.default = series(dev, prod, types);
+const prodBuild = parallel(prod, types);
+const devBuild = parallel(dev, types);
+
+exports.build = prodBuild;
+exports.devBuild = devBuild;
+exports.default = prodBuild;
