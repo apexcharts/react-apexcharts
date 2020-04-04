@@ -47,14 +47,14 @@
     "gulp-concat": "^2.6.1",
     "gulp-react": "^3.1.0",
     "gulp-uglify": "^3.0.0",
-    "jest": "^23.6.0",
+    "jest": "^25.1.0",
     "react": "^16.6.3",
     "react-dom": "^16.6.3",
     "react-test-renderer": "^16.6.3",
     "rollup": "1.27.14",
     "rollup-plugin-babel": "^3.0.4",
     "rollup-plugin-node-resolve": "^3.4.0",
-    "rollup-plugin-postcss": "^1.6.1",
+    "rollup-plugin-postcss": "^2.0.6",
     "rollup-plugin-uglify": "^3.0.0"
   }
 }
