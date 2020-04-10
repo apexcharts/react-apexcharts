@@ -10,7 +10,8 @@ declare module "react-apexcharts" {
         series?: Array<any>,
         width?: string | number,
         height?: string | number,
-        options?: object
+        options?: object,
+        [key: string]: any,
     }
 
     export default class ReactApexChart extends React.Component<Props> {}
