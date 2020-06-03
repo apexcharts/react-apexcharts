@@ -17,7 +17,8 @@ declare module "react-apexcharts" {
     type Color = string;
 
     interface ChartOptions {
-        annotations?: Annotations
+        annotations?: Annotations;
+        chart: Chart;
     }
 
     interface Annotations {
@@ -174,8 +175,90 @@ declare module "react-apexcharts" {
                 enabled?: boolean,
                 speed?: number
             }
+        },
+        background?: Color,
+        brush?: {
+            enabled?: boolean,
+            targer?: string,
+            autoScaleYaxis?: boolean
+        },
+        defaultLocale?: string,
+        dropShadow?: {
+            enabled?: boolean,
+            enabledOnSeries?: number[],
+            top?: number,
+            left?: number,
+            blur?: number,
+            color?: string | string[],
+            opacity?: number,
+        },
+        fontFamily?: string,
+        forceColor?: Color,
+        group?: string,
+        events?: {
+            beforeMount?: Function,
+            mounted?: Function,
+            updated?: Function,
+            click?: Function,
+            mouseMove?: Function,
+            legendClick?: Function,
+            markerClick?: Function,
+            selection?: Function,
+            dataPointSelection?: Function,
+            dataPointMouseLeave?: Function,
+            beforeZoom?: Function,
+            zoomed?: Function,
+            scrolled?: Function,
+        },
+        height?: number | string,
+        chart?: {
+            id?: string,
+        },
+        locales?: {
+            name?: string;
+            options: {
+                months: string[];
+                shortMonths: string[];
+                days: string[];
+                shortDays: string[];
+                toolbar: {
+                    download: string;
+                    selection: string;
+                    selectionZoom: string;
+                    zoomIn: string;
+                    zoomOut: string;
+                    pan: string;
+                    reset: string;
+                }
+            }
+        },
+        offsetX: number;
+        offsetY: number;
+        parentHeightOffset: number;
+        redrawOnParentResize: boolean;
+        selection: {
+            enabled: boolean;
+            type: 'x' | 'y' | 'xy',
+            fill: {
+                color: Color,
+                opacity: number,
+            },
+            stroke: {
+                width: number,
+                dashArray: number,
+                color: Color,
+                opacity: number,
+            },
+            xaxis: {
+                min: number,
+                max: number,
+            }
+            yaxis: {
+                min: number,
+                max: number,
+            }
         }
-    }
+    }   
 
     export default class ReactApexChart extends React.Component<Props> {}
 }
