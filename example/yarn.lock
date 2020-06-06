@@ -1225,17 +1225,16 @@ anymatch@^2.0.0:
     micromatch "^3.1.4"
     normalize-path "^2.1.1"
 
-apexcharts@^3.0.0:
-  version "3.11.2"
-  resolved "https://registry.yarnpkg.com/apexcharts/-/apexcharts-3.11.2.tgz#acb6b4a3b3ffad740f43a70a393888a37095a817"
+apexcharts@^3.17.1:
+  version "3.19.2"
+  resolved "https://registry.yarnpkg.com/apexcharts/-/apexcharts-3.19.2.tgz#d46113bf253e79f15e67d00721e5bb12af73914e"
   dependencies:
-    promise-polyfill "8.1.0"
     svg.draggable.js "^2.2.2"
     svg.easing.js "^2.0.0"
     svg.filter.js "^2.0.2"
     svg.pathmorphing.js "^0.1.3"
     svg.resize.js "^1.4.3"
-    svg.select.js "^2.1.2"
+    svg.select.js "^3.0.1"
 
 append-transform@^0.4.0:
   version "0.4.0"
@@ -7022,10 +7021,6 @@ promise-inflight@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/promise-inflight/-/promise-inflight-1.0.1.tgz#98472870bf228132fcbdd868129bad12c3c029e3"
 
-promise-polyfill@8.1.0:
-  version "8.1.0"
-  resolved "https://registry.yarnpkg.com/promise-polyfill/-/promise-polyfill-8.1.0.tgz#30059da54d1358ce905ac581f287e184aedf995d"
-
 promise@8.0.2:
   version "8.0.2"
   resolved "https://registry.yarnpkg.com/promise/-/promise-8.0.2.tgz#9dcd0672192c589477d56891271bdc27547ae9f0"
@@ -8312,6 +8307,12 @@ svg.select.js@^2.1.2:
   dependencies:
     svg.js "^2.2.5"
 
+svg.select.js@^3.0.1:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/svg.select.js/-/svg.select.js-3.0.1.tgz#a4198e359f3825739226415f82176a90ea5cc917"
+  dependencies:
+    svg.js "^2.6.5"
+
 svgo@^1.0.0, svgo@^1.2.2:
   version "1.3.2"
   resolved "https://registry.yarnpkg.com/svgo/-/svgo-1.3.2.tgz#b6dc511c063346c9e415b81e43401145b96d4167"
@@ -8912,8 +8913,8 @@ websocket-driver@>=0.5.1:
     websocket-extensions ">=0.1.1"
 
 websocket-extensions@>=0.1.1:
-  version "0.1.3"
-  resolved "https://registry.yarnpkg.com/websocket-extensions/-/websocket-extensions-0.1.3.tgz#5d2ff22977003ec687a4b87073dfbbac146ccf29"
+  version "0.1.4"
+  resolved "https://registry.yarnpkg.com/websocket-extensions/-/websocket-extensions-0.1.4.tgz#7f8473bc839dfd87608adb95d7eb075211578a42"
 
 whatwg-encoding@^1.0.1:
   version "1.0.3"
