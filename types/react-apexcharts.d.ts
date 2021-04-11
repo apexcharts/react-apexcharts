@@ -25,6 +25,7 @@ declare module "react-apexcharts" {
         | "bubble"
         | "heatmap"
         | "treemap"
+        | "boxPlot"
         | "candlestick"
         | "radar"
         | "polarArea"
