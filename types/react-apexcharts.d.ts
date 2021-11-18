@@ -4,7 +4,7 @@ import { ApexOptions } from 'apexcharts'
  * Basic type definitions from https://apexcharts.com/docs/react-charts/#props
  */
 declare module "react-apexcharts" {
-  interface Props {
+  export interface Props {
     type?: "line"
     | "area"
     | "bar"
