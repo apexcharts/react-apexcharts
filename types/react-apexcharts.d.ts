@@ -1,5 +1,6 @@
 /// <reference types="react"/>
-import { ApexOptions } from 'apexcharts'
+import { ApexOptions } from 'apexcharts';
+import React from 'react';
 /**
  * Basic type definitions from https://apexcharts.com/docs/react-charts/#props
  */
