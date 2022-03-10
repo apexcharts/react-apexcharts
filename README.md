@@ -63,7 +63,7 @@ This will render the following chart
 
 ### How do I update the chart?
 Simple! Just change the `series` or any `option` and it will automatically re-render the chart.
-<p align="center"><a href="#"><img src="https://apexcharts.com/media/react-chart-updation.gif"></a></p>
+<p align="center"><a href="https://codesandbox.io/s/mzzq3yqjqj"><img src="https://apexcharts.com/media/react-chart-updation.gif"></a></p>
 
 View this example on <a href="https://codesandbox.io/s/mzzq3yqjqj">codesandbox</a>
 
@@ -102,7 +102,7 @@ this.setState({
 | **height** | Number/String | Possible values for width can be `100%` or `300px` or 300 |
 | **options** | Object | The configuration object, see options on [API (Reference)](https://apexcharts.com/docs/options/chart/type/) |
 
-## How to call methods of ApexCharts programatically?
+## How to call methods of ApexCharts programmatically?
 Sometimes, you may want to call other methods of the core ApexCharts library, and you can do so on `ApexCharts` global variable directly
 
 Example

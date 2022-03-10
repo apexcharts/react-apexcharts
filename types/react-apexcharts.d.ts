@@ -1,10 +1,11 @@
 /// <reference types="react"/>
-import { ApexOptions } from 'apexcharts'
+import { ApexOptions } from 'apexcharts';
+import React from 'react';
 /**
  * Basic type definitions from https://apexcharts.com/docs/react-charts/#props
  */
 declare module "react-apexcharts" {
-  interface Props {
+  export interface Props {
     type?: "line"
     | "area"
     | "bar"
@@ -21,7 +22,7 @@ declare module "react-apexcharts" {
     | "radar"
     | "polarArea"
     | "rangeBar",
-    series?: Array<any>,
+    series?: ApexOptions['series'],
     width?: string | number,
     height?: string | number,
     options?: ApexOptions,
