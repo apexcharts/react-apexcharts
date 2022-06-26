@@ -28,5 +28,10 @@ declare module "react-apexcharts" {
     options?: ApexOptions,
     [key: string]: any,
   }
-  export default class ReactApexChart extends React.Component<Props> {}    
+  export default class ReactApexChart extends React.Component<Props> {
+    render(): React.DetailedReactHTMLElement<{
+      children?: React.ReactNode;
+      ref: React.RefObject<any> | ((el: any) => any) | undefined;
+    }, any>
+  }
 }
