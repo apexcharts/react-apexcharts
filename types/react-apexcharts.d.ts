@@ -6,7 +6,7 @@ import React from 'react';
  */
 declare module "react-apexcharts" {
   export interface Props {
-    type?: "line"
+    type: "line"
     | "area"
     | "bar"
     | "histogram"
@@ -22,10 +22,10 @@ declare module "react-apexcharts" {
     | "radar"
     | "polarArea"
     | "rangeBar",
-    series?: ApexOptions['series'],
+    series: ApexOptions['series'],
     width?: string | number,
     height?: string | number,
-    options?: ApexOptions,
+    options: ApexOptions,
     [key: string]: any,
   }
   export default class ReactApexChart extends React.Component<Props> {

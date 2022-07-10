@@ -96,11 +96,11 @@ this.setState({
 
 | Prop        | Type           | Description  |
 | ------------- |-------------| -----|
-| **series** | Array | The series is an array which accepts object in the following format. To know more about the format of dataSeries, checkout [Series](https://apexcharts.com/docs/series/) docs on the website. |
-| **type** | String  | `line`, `area`, `bar`, `pie`, `donut`, `scatter`, `bubble`, `heatmap`, `radialBar`  |
-| **width** | Number/String  | Possible values for width can be `100%` or `400px` or 400 |
-| **height** | Number/String | Possible values for width can be `100%` or `300px` or 300 |
-| **options** | Object | The configuration object, see options on [API (Reference)](https://apexcharts.com/docs/options/chart/type/) |
+| **series** | `Array` | The series is a set of data. To know more about the format of the data, checkout [Series docs](https://apexcharts.com/docs/series/) on the website. |
+| **type** | `String`  | `line`, `area`, `bar`, `pie`, `donut`, `scatter`, `bubble`, `heatmap`, `radialBar` |
+| **width** | `Number or String`  | Possible values for width can be `100%`, `400px` or `400` (by default is `100%`) |
+| **height** | `Number or String` | Possible values for height can be `100%`, `300px` or `300` (by default is `auto`) |
+| **options** | `Object` | The configuration object, see options on [API (Reference)](https://apexcharts.com/docs/options/chart/type/) |
 
 ## How to call methods of ApexCharts programmatically?
 Sometimes, you may want to call other methods of the core ApexCharts library, and you can do so on `ApexCharts` global variable directly

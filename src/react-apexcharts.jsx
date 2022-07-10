@@ -135,8 +135,14 @@ export default class Charts extends Component {
 
 Charts.propTypes = {
   type: PropTypes.string.isRequired,
-  width: PropTypes.any,
-  height: PropTypes.any,
+  width: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+  ]),
+  height: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+  ]),
   series: PropTypes.array.isRequired,
   options: PropTypes.object.isRequired
 }
