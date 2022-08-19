@@ -25,7 +25,7 @@ declare module "react-apexcharts" {
     series?: ApexOptions['series'],
     width?: string | number,
     height?: string | number,
-    options?: ApexOptions,
+    options?: ApexOptions | any,
     [key: string]: any,
   }
   export default class ReactApexChart extends React.Component<Props> {
