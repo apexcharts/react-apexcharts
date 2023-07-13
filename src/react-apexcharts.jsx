@@ -1,4 +1,4 @@
-import ApexCharts from 'apexcharts/dist/apexcharts.common'
+import ApexCharts from 'apexcharts'
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
@@ -16,7 +16,7 @@ export default class Charts extends Component {
   }
 
   render () {
-    const { type, height, width, series, options, ...props } = this.props
+    const { ...props } = this.props
     return React.createElement('div', {
       ref: React.createRef
         ? this.chartRef
