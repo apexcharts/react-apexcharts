@@ -52,7 +52,7 @@
     "react": "^16.6.3",
     "react-dom": "^16.6.3",
     "react-test-renderer": "^16.6.3",
-    "rollup": "1.27.14",
+    "rollup": "3.29.5",
     "rollup-plugin-babel": "^3.0.4",
     "rollup-plugin-node-resolve": "^3.4.0",
     "rollup-plugin-postcss": "^4.0.2",
