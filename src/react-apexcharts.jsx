@@ -133,6 +133,7 @@ export default class Charts extends Component {
       } else {
         // both might be changed
         this.chart.updateOptions(this.getConfig())
+        this.chart.updateSeries(series)
       }
     }
   }
