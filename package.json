@@ -40,7 +40,7 @@
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-3": "^6.24.1",
-    "concurrently": "^4.1.0",
+    "concurrently": "^9.0.1",
     "eslint": "^5.14.1",
     "eslint-plugin-react": "^7.12.4",
     "gulp": "^5.0.0",
