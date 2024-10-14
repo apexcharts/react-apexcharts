@@ -1,29 +1,27 @@
-import babel from 'rollup-plugin-babel';
-import resolve from 'rollup-plugin-node-resolve';
-import uglify from 'rollup-plugin-uglify'
+const terser = require("@rollup/plugin-terser")
+const { babel } = require("@rollup/plugin-babel")
+const { nodeResolve } = require("@rollup/plugin-node-resolve")
 
 let pluginOptions = [
-  resolve({
-    browser: true
-  }),
-  babel({
-    exclude: 'node_modules/**'
-  }),
-  uglify()
+  nodeResolve({ browser: true }),
+  babel({ exclude: "node_modules/**", babelHelpers: "bundled" }),
+  terser()
 ];
 
 module.exports = {
-  input: './src/react-apexcharts.jsx',
-  output: [{
-    name: 'ReactApexChart', 
-    file: 'dist/react-apexcharts.iife.min.js',
-    format: 'iife',
-    globals: {
-      react: "React",
-      apexcharts: "ApexCharts",
-      'prop-types': "PropTypes"
+  input: "./src/react-apexcharts.jsx",
+  output: [
+    {
+      name: "ReactApexChart",
+      file: "dist/react-apexcharts.iife.min.js",
+      format: "iife",
+      globals: {
+        react: "React",
+        apexcharts: "ApexCharts",
+        "prop-types": "PropTypes"
+      }
     }
-  }],
-  external: ['react', 'apexcharts', 'prop-types'],
+  ],
+  external: ["react", "apexcharts", "prop-types"],
   plugins: pluginOptions
-}
+};
