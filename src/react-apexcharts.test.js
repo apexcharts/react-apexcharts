@@ -1,8 +1,9 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
+import { createRoot } from 'react-dom/client'
 import Chart from './react-apexcharts.jsx'
 
 const props = {
+  type: 'bar',
   options: {
     xaxis: {
       categories: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
@@ -14,7 +15,8 @@ const props = {
 }
 
 it('renders without crashing', () => {
-  const div = document.createElement('div')
-  ReactDOM.render(<Chart {...props}/>, div)
-  ReactDOM.unmountComponentAtNode(div);
-})
+  const div = document.createElement('div');
+  const root = createRoot(div);
+  root.render(<Chart {...props} />);
+  root.unmount();
+});
