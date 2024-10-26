@@ -5,7 +5,7 @@
   "dependencies": {
     "apexcharts": "^3.24.0",
     "react": "^16.6.3",
-    "react-apexcharts": "^1.2.1",
+    "react-apexcharts": "^1.4.2",
     "react-dom": "^16.6.3",
     "react-scripts": "^5.0.1"
   },
