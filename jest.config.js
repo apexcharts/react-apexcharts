@@ -3,7 +3,7 @@
 
 module.exports = {
   clearMocks: true,
-  testEnvironment: "jest-environment-jsdom",
+  testEnvironment: 'jest-environment-jsdom',
   testPathIgnorePatterns: [
     "/node_modules/",
     "/example/"
