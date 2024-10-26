@@ -63,17 +63,11 @@ export default function Charts({
     const prevOptions = chart.current.options;
     const prevSeries = chart.current.series;
 
-    if (
-      !deepEqual(prevOptions, options) ||
-      !deepEqual(prevSeries, series) ||
-      height !== chart.current.height ||
-      width !== chart.current.width
-    ) {
-      if (deepEqual(prevSeries, series)) {
-        chart.current.updateOptions(getConfig());
-      } else {
-        chart.current.updateSeries(series);
-      }
+    if (height !== chart.current.height || width !== chart.current.width || !deepEqual(prevOptions, options)) {
+      chart.current.updateOptions(getConfig());
+    }
+    if (!deepEqual(prevSeries, series)) {
+      chart.current.updateSeries(series);
     }
   }, [options, series, height, width]);
 
