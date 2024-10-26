@@ -47,7 +47,6 @@
     "gulp": "^5.0.0",
     "gulp-babel": "^8.0.0",
     "gulp-concat": "^2.6.1",
-    "gulp-react": "^4.0.0",
     "gulp-uglify": "^3.0.2",
     "jest": "^29.7.0",
     "jest-environment-jsdom": "^29.7.0",
