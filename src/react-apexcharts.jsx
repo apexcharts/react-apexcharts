@@ -13,8 +13,12 @@ function omit(obj, keysToRemove) {
 function deepEqual(obj1, obj2, visited = new WeakSet()) {
   if (obj1 === obj2) return true;
 
-  if (typeof obj1 !== 'object' || obj1 === null ||
-      typeof obj2 !== 'object' || obj2 === null) {
+  if (
+    typeof obj1 !== 'object' ||
+    obj1 === null ||
+    typeof obj2 !== 'object' ||
+    obj2 === null
+  ) {
     return false;
   }
 
@@ -63,18 +67,25 @@ export default function Charts({
     const prevOptions = chart.current.options;
     const prevSeries = chart.current.series;
 
-    if (
+    const seriesChanged = !deepEqual(prevSeries, series);
+    const optionsChanged =
       !deepEqual(prevOptions, options) ||
-      !deepEqual(prevSeries, series) ||
       height !== chart.current.height ||
-      width !== chart.current.width
-    ) {
-      if (deepEqual(prevSeries, series)) {
+      width !== chart.current.width;
+
+    if (seriesChanged || optionsChanged) {
+      if (!seriesChanged) {
+        // series has not changed, but options or size have changed
         chart.current.updateOptions(getConfig());
-      } else {
+      } else if (!optionsChanged) {
+        // options or size have not changed, just the series has changed
         chart.current.updateSeries(series);
+      } else {
+        // both might be changed
+        chart.current.updateOptions(getConfig());
       }
     }
+
   }, [options, series, height, width]);
 
   const getConfig = () => {
@@ -82,7 +93,7 @@ export default function Charts({
       chart: { type, height, width },
       series
     };
-    
+
     return extend(options, newOptions);
   };
 
