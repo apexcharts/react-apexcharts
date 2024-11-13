@@ -1,39 +1,30 @@
-import React, { Component } from 'react';
-import Chart from 'react-apexcharts'
+import React from "react";
+import Chart from "react-apexcharts";
 
-class Bar extends Component {
-
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      options: {
-        dataLabels: {
-          enabled: false
-        },
-        plotOptions: {
-          bar: {
-            horizontal: true
-          }
-        },
-        xaxis: {
-          categories: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
-        }
-      },
-      series: [{
-        data: [30, 40, 25, 50, 49, 21, 70, 51]
-      }],
+export default function Bar() {
+  const series = [
+    {
+      data: [30, 40, 25, 50, 49, 21, 70, 51]
     }
-  }
+  ];
 
-  render() {
+  const options = {
+    dataLabels: {
+      enabled: false
+    },
+    plotOptions: {
+      bar: {
+        horizontal: true
+      }
+    },
+    xaxis: {
+      categories: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
+    }
+  };
 
-    return (
-      <div className="bar">
-        <Chart options={this.state.options} series={this.state.series} type="bar" width="500" />
-      </div>
-    );
-  }
+  return (
+    <div className="bar">
+      <Chart options={options} series={series} type="bar" width="500" />
+    </div>
+  );
 }
-
-export default Bar;

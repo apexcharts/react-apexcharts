@@ -1,28 +1,16 @@
-import React, { Component } from 'react';
-import Chart from 'react-apexcharts'
+import React from "react";
+import Chart from "react-apexcharts";
 
-class Donut extends Component {
+export default function Donut() {
+  const series = [44, 55, 41, 17, 15];
 
-  constructor(props) {
-    super(props);
+  const options = {
+    labels: ["A", "B", "C", "D", "E"]
+  };
 
-    this.state = {
-      options: {
-        labels: ['A', 'B', 'C', 'D', 'E']
-      },
-      series: [44, 55, 41, 17, 15]
-
-    }
-  }
-
-  render() {
-
-    return (
-      <div className="donut">
-        <Chart options={this.state.options} series={this.state.series} type="donut" width="380" />
-      </div>
-    );
-  }
+  return (
+    <div className="donut">
+      <Chart options={options} series={series} type="donut" width="380" />
+    </div>
+  );
 }
-
-export default Donut;
