@@ -50,8 +50,11 @@ export default function Charts({
 }) {
   const chartRef = useRef(null);
   let chart = useRef(null);
+  const prevOptions = useRef()
 
   useEffect(() => {
+    prevOptions.current = options;
+
     const current = chartRef.current;
     chart.current = new ApexCharts(current, getConfig());
     chart.current.render();
@@ -64,14 +67,13 @@ export default function Charts({
   }, []);
 
   useEffect(() => {
-    const prevOptions = chart.current.options;
-    const prevSeries = chart.current.series;
+    const prevSeries = chart.current.w.config.series
 
-    const seriesChanged = !deepEqual(prevSeries, series);
+    const seriesChanged = !deepEqual(prevSeries, series)
     const optionsChanged =
-      !deepEqual(prevOptions, options) ||
-      height !== chart.current.height ||
-      width !== chart.current.width;
+      !deepEqual(prevOptions.current, options) ||
+      height !== chart.current.opts.chart.height ||
+      width !== chart.current.opts.chart.width;
 
     if (seriesChanged || optionsChanged) {
       if (!seriesChanged) {
@@ -85,6 +87,7 @@ export default function Charts({
         chart.current.updateOptions(getConfig());
       }
     }
+    prevOptions.current = options
 
   }, [options, series, height, width]);
 
