@@ -28,7 +28,6 @@ export default function ChartUpdate() {
       plotOptions: {
         bar: {
           columnWidth: "50%",
-          endingShape: "arrow"
         }
       },
       stroke: { width: [4, 0, 0] },
@@ -37,10 +36,6 @@ export default function ChartUpdate() {
       },
       markers: {
         size: 6,
-        strokeWidth: 3,
-        fillOpacity: 0,
-        strokeOpacity: 0,
-        hover: { size: 8 }
       },
       yaxis: {
         tickAmount: 5,
