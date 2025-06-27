@@ -46,16 +46,17 @@ export default function Charts({
   height = "auto",
   series,
   options,
+  chartRef,
   ...restProps
 }) {
-  const chartRef = useRef(null);
-  let chart = useRef(null);
+  const chartElementRef = useRef(null);
+  let chart = chartRef || useRef(null);
   const prevOptions = useRef()
 
   useEffect(() => {
     prevOptions.current = options;
 
-    const current = chartRef.current;
+    const current = chartElementRef.current;
     chart.current = new ApexCharts(current, getConfig());
     chart.current.render();
 
@@ -124,7 +125,7 @@ export default function Charts({
 
   const rest = omit(restProps, Object.keys(Charts.propTypes));
 
-  return <div ref={chartRef} {...rest} />;
+  return <div ref={chartElementRef} {...rest} />;
 }
 
 Charts.propTypes = {
@@ -132,5 +133,6 @@ Charts.propTypes = {
   series: PropTypes.array.isRequired,
   options: PropTypes.object.isRequired,
   width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  height: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
+  height: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  chartRef: PropTypes.shape({ current: PropTypes.any })
 };
