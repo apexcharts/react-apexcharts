@@ -1,7 +1,6 @@
 <p align="center"><img src="https://apexcharts.com/media/react-apexcharts.png"></p>
 
 <p align="center">
-  <a href="https://github.com/apexcharts/react-apexcharts/blob/master/LICENSE"><img src="https://img.shields.io/badge/License-MIT-brightgreen.svg" alt="License"></a>
   <a href="https://travis-ci.com/apexcharts/react-apexcharts"><img src="https://api.travis-ci.com/apexcharts/react-apexcharts.svg?branch=master" alt="build" /></a>
   <a href="https://www.npmjs.com/package/react-apexcharts"><img src="https://img.shields.io/npm/v/react-apexcharts.svg" alt="ver"></a>
 </p>
@@ -168,4 +167,5 @@ npm run build
 
 ## License
 
-React-ApexCharts is released under MIT license. You are free to use, modify and distribute this software, as long as the copyright header is left intact.
+ApexCharts is offered under a **dual-license model** to support individuals, startups, and commercial products of all sizes.
+Read full license agreements here: [https://apexcharts.com/license](https://apexcharts.com/license)
