@@ -3,26 +3,50 @@ import ApexCharts from "apexcharts";
 import PropTypes from "prop-types";
 
 function omit(obj, keysToRemove) {
-  let newObj = { ...obj };
+  const newObj = { ...obj };
   keysToRemove.forEach((key) => {
     delete newObj[key];
   });
   return newObj;
 }
 
+function isObject(item) {
+  return item && typeof item === "object" && !Array.isArray(item);
+}
+
+// deep merge target with source, source values take precedence
+function extend(target, source) {
+  let output = { ...target };
+  if (isObject(target) && isObject(source)) {
+    Object.keys(source).forEach((key) => {
+      if (isObject(source[key])) {
+        if (!(key in target)) {
+          output[key] = source[key];
+        } else {
+          output[key] = extend(target[key], source[key]);
+        }
+      } else {
+        output[key] = source[key];
+      }
+    });
+  }
+  return output;
+}
+
 function deepEqual(obj1, obj2, visited = new WeakSet()) {
   if (obj1 === obj2) return true;
 
   if (
-    typeof obj1 !== 'object' ||
+    typeof obj1 !== "object" ||
     obj1 === null ||
-    typeof obj2 !== 'object' ||
+    typeof obj2 !== "object" ||
     obj2 === null
   ) {
     return false;
   }
 
-  if (visited.has(obj1) || visited.has(obj2)) return true; // Handle circular refs
+  // handle circular references
+  if (visited.has(obj1) || visited.has(obj2)) return true;
   visited.add(obj1);
   visited.add(obj2);
 
@@ -31,7 +55,7 @@ function deepEqual(obj1, obj2, visited = new WeakSet()) {
 
   if (keys1.length !== keys2.length) return false;
 
-  for (let key of keys1) {
+  for (const key of keys1) {
     if (!keys2.includes(key) || !deepEqual(obj1[key], obj2[key], visited)) {
       return false;
     }
@@ -39,6 +63,9 @@ function deepEqual(obj1, obj2, visited = new WeakSet()) {
 
   return true;
 }
+
+// keys to omit when spreading restProps to the container div
+const CHART_PROP_KEYS = ["type", "series", "options", "width", "height", "chartRef"];
 
 export default function Charts({
   type = "line",
@@ -50,15 +77,25 @@ export default function Charts({
   ...restProps
 }) {
   const chartElementRef = useRef(null);
-  let chart = chartRef || useRef(null);
-  const prevOptions = useRef()
+  const prevOptionsRef = useRef(null);
 
+  // always call useRef unconditionally to satisfy rules of hooks
+  const internalChartRef = useRef(null);
+  const chart = chartRef || internalChartRef;
+
+  const getConfig = () => {
+    const newOptions = {
+      chart: { type, height, width },
+      series,
+    };
+    return extend(options, newOptions);
+  };
+
+  // mount: create chart instance
   useEffect(() => {
-    prevOptions.current = options;
-
-    const current = chartElementRef.current;
-    chart.current = new ApexCharts(current, getConfig());
+    chart.current = new ApexCharts(chartElementRef.current, getConfig());
     chart.current.render();
+    prevOptionsRef.current = options;
 
     return () => {
       if (chart.current && typeof chart.current.destroy === "function") {
@@ -68,62 +105,36 @@ export default function Charts({
   }, []);
 
   useEffect(() => {
-    const prevSeries = chart.current.w.config.series
+    // skip on initial mount (chart.current.w won't exist yet on first render cycle)
+    if (!chart.current || !chart.current.w) {
+      return;
+    }
 
-    const seriesChanged = !deepEqual(prevSeries, series)
+    const prevSeries = chart.current.w.config.series;
+
+    const seriesChanged = !deepEqual(prevSeries, series);
     const optionsChanged =
-      !deepEqual(prevOptions.current, options) ||
+      !deepEqual(prevOptionsRef.current, options) ||
       height !== chart.current.opts.chart.height ||
       width !== chart.current.opts.chart.width;
 
     if (seriesChanged || optionsChanged) {
       if (!seriesChanged) {
-        // series has not changed, but options or size have changed
+        // only options or size changed
         chart.current.updateOptions(getConfig());
       } else if (!optionsChanged) {
-        // options or size have not changed, just the series has changed
+        // only series changed
         chart.current.updateSeries(series);
       } else {
-        // both might be changed
+        // both changed
         chart.current.updateOptions(getConfig());
       }
     }
-    prevOptions.current = options
 
+    prevOptionsRef.current = options;
   }, [options, series, height, width]);
 
-  const getConfig = () => {
-    const newOptions = {
-      chart: { type, height, width },
-      series
-    };
-
-    return extend(options, newOptions);
-  };
-
-  const isObject = (item) => {
-    return item && typeof item === "object" && !Array.isArray(item);
-  };
-
-  const extend = (target, source) => {
-    let output = { ...target };
-    if (isObject(target) && isObject(source)) {
-      Object.keys(source).forEach((key) => {
-        if (isObject(source[key])) {
-          if (!(key in target)) {
-            Object.assign(output, { [key]: source[key] });
-          } else {
-            output[key] = extend(target[key], source[key]);
-          }
-        } else {
-          Object.assign(output, { [key]: source[key] });
-        }
-      });
-    }
-    return output;
-  };
-
-  const rest = omit(restProps, Object.keys(Charts.propTypes));
+  const rest = omit(restProps, CHART_PROP_KEYS);
 
   return <div ref={chartElementRef} {...rest} />;
 }
