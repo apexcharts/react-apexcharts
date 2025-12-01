@@ -1,6 +1,6 @@
 {
   "name": "react-apexcharts",
-  "version": "1.8.0",
+  "version": "1.9.0",
   "description": "React.js wrapper for ApexCharts",
   "main": "dist/react-apexcharts.cjs.js",
   "module": "dist/react-apexcharts.esm.js",
