@@ -4,12 +4,16 @@ const terser = require("@rollup/plugin-terser");
 const path = require("path");
 
 const input = "./src/react-apexcharts.jsx";
+const serverInput = "./src/react-apexcharts-server.jsx";
+const hydrateInput = "./src/react-apexcharts-hydrate.jsx";
 
-const external = ["react", "apexcharts", "prop-types"];
+const external = ["react", "apexcharts", "apexcharts/ssr", "apexcharts/client", "prop-types"];
 
 const globals = {
   react: "React",
   apexcharts: "ApexCharts",
+  "apexcharts/ssr": "ApexCharts",
+  "apexcharts/client": "ApexCharts",
   "prop-types": "PropTypes",
 };
 
@@ -63,4 +67,26 @@ const iifeConfig = {
   plugins: [nodeResolve({ browser: true }), babelPlugin, terser()],
 };
 
-module.exports = [cjsConfig, esmConfig, iifeConfig];
+// server component build (esm only, for Next.js App Router)
+const serverConfig = {
+  input: serverInput,
+  output: {
+    file: "dist/react-apexcharts-server.esm.js",
+    format: "esm",
+  },
+  external,
+  plugins: [nodeResolve({ browser: false }), babelPlugin, terser()],
+};
+
+// hydrate component build (esm only, for Next.js App Router)
+const hydrateConfig = {
+  input: hydrateInput,
+  output: {
+    file: "dist/react-apexcharts-hydrate.esm.js",
+    format: "esm",
+  },
+  external,
+  plugins: [nodeResolve({ browser: true }), babelPlugin, terser()],
+};
+
+module.exports = [cjsConfig, esmConfig, iifeConfig, serverConfig, hydrateConfig];

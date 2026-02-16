@@ -1,5 +1,7 @@
+"use client";
+
 import React, { useEffect, useRef } from "react";
-import ApexCharts from "apexcharts";
+import ApexCharts from "apexcharts/client";
 import PropTypes from "prop-types";
 
 function omit(obj, keysToRemove) {

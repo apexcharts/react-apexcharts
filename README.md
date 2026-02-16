@@ -24,6 +24,8 @@ npm install react-apexcharts apexcharts
 
 ## Usage
 
+### Client-Side Usage (Traditional)
+
 ```js
 import Chart from 'react-apexcharts'
 ```
@@ -66,6 +68,106 @@ Simple! Just change the `series` or any `option` and it will automatically re-re
 
 View this example on <a href="https://codesandbox.io/s/mzzq3yqjqj">codesandbox</a>
 
+### Server-Side Rendering (SSR) with Next.js App Router
+
+**New in v2.0.0**: react-apexcharts now supports Server-Side Rendering with Next.js 13+ App Router using ApexCharts v5.5.0+.
+
+#### Server Component (RSC)
+
+Render charts on the server for faster initial page loads:
+
+```tsx
+import Chart from 'react-apexcharts/server'
+
+export default async function DashboardPage() {
+  const series = [{
+    name: 'series-1',
+    data: [30, 40, 35, 50, 49, 60, 70, 91, 125]
+  }]
+
+  const options = {
+    chart: { id: 'apexchart-example' },
+    xaxis: { categories: [1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998, 1999] }
+  }
+
+  return (
+    <Chart
+      type="bar"
+      series={series}
+      options={options}
+      width={500}
+      height={320}
+    />
+  )
+}
+```
+
+#### With Client-Side Hydration
+
+For interactive charts, combine server rendering with client-side hydration:
+
+```tsx
+// app/dashboard/page.tsx (Server Component)
+import Chart from 'react-apexcharts/server'
+import ChartHydrate from './ChartHydrate'
+
+export default async function DashboardPage() {
+  const series = [{ data: [30, 40, 35, 50, 49, 60, 70] }]
+  const options = { chart: { type: 'bar' }, xaxis: { categories: ['A', 'B', 'C', 'D', 'E', 'F', 'G'] } }
+
+  return (
+    <div>
+      <Chart type="bar" series={series} options={options} width={500} height={300} />
+      <ChartHydrate />
+    </div>
+  )
+}
+```
+
+```tsx
+// app/dashboard/ChartHydrate.tsx (Client Component)
+'use client'
+import Hydrate from 'react-apexcharts/hydrate'
+
+export default function ChartHydrate() {
+  return (
+    <Hydrate
+      className="my-chart"
+      clientOptions={{
+        chart: {
+          animations: {
+            enabled: true,
+            speed: 800
+          }
+        }
+      }}
+    />
+  )
+}
+```
+
+#### Client-Only Usage in Next.js
+
+For client-only rendering (same as before):
+
+```tsx
+'use client'
+import Chart from 'react-apexcharts'
+
+export default function ClientChart() {
+  const options = {
+    chart: { id: 'apexchart-example' },
+    xaxis: { categories: [1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998, 1999] }
+  }
+
+  const series = [{
+    name: 'series-1',
+    data: [30, 40, 35, 50, 49, 60, 70, 91, 125]
+  }]
+
+  return <Chart type="bar" series={series} options={options} />
+}
+```
 
 **Important:** While updating the options, make sure to update the outermost property even when you need to update the nested property.
 
@@ -121,8 +223,10 @@ The repository includes the following files and directories.
 ```
 react-apexcharts/
 ├── dist/
-│   ├── react-apexcharts.min.js
-│   └── react-apexcharts.js
+│   ├── react-apexcharts.cjs.js
+│   ├── react-apexcharts.esm.js
+│   ├── react-apexcharts.iife.min.js
+│   └── react-apexchart.min.js (backward compat)
 └── example/
 │   ├── src/
 │   ├── public/
@@ -153,13 +257,7 @@ npm run start
 
 #### Bundling
 
-##### To build for Development
-
-```bash
-npm run dev-build
-```
-
-##### To build for Production
+##### To build
 
 ```bash
 npm run build
