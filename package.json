@@ -53,7 +53,7 @@
     "prop-types": "^15.8.1"
   },
   "peerDependencies": {
-    "apexcharts": ">=5.5.0",
+    "apexcharts": ">=5.6.0",
     "react": ">=16.8.0"
   },
   "devDependencies": {
