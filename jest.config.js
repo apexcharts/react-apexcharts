@@ -9,4 +9,9 @@ module.exports = {
     "/example/"
   ],
   setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],
+  moduleNameMapper: {
+    // apexcharts/core is available from apexcharts >=5.10.0
+    // Map to a local mock so tests work before that version is installed
+    '^apexcharts/core$': '<rootDir>/__mocks__/apexcharts-core.js',
+  },
 };

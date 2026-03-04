@@ -192,6 +192,52 @@ this.setState({
 ```
 
 
+### Tree-Shaking (Smaller Bundles)
+
+**New in v2.1.0**: Use the `/core` export to reduce your bundle size by only importing the chart types and features you actually use. This requires `apexcharts >=5.10.1`.
+
+```js
+// Instead of:
+import Chart from 'react-apexcharts'
+
+// Use the core variant:
+import Chart from 'react-apexcharts/core'
+
+// Then manually register only what you need:
+import 'apexcharts/bar'                  // bar / column chart type
+import 'apexcharts/line'                 // line / area / scatter chart type
+import 'apexcharts/features/legend'      // legend feature
+import 'apexcharts/features/annotations' // annotations feature
+// ... etc.
+```
+
+Full example:
+
+```jsx
+import Chart from 'react-apexcharts/core'
+import 'apexcharts/bar'
+import 'apexcharts/features/legend'
+
+export default function BarChart() {
+  const series = [{ name: 'Sales', data: [30, 40, 35, 50, 49, 60, 70, 91, 125] }]
+  const options = {
+    chart: { id: 'bar-chart' },
+    xaxis: { categories: [1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998, 1999] }
+  }
+
+  return <Chart type="bar" series={series} options={options} width={500} height={320} />
+}
+```
+
+The core variant also has SSR and hydration counterparts:
+
+```js
+import Chart from 'react-apexcharts/core/server'   // Server Component (async)
+import Hydrate from 'react-apexcharts/core/hydrate' // Client hydration
+```
+
+> **Note for Vite users:** Add `resolve: { dedupe: ['apexcharts'] }` to your `vite.config.js` to prevent Vite from loading two separate ApexCharts instances when mixing imports.
+
 ## Props
 
 
@@ -202,6 +248,7 @@ this.setState({
 | **width** | `Number or String`  | Possible values for width can be `100%`, `400px` or `400` (by default is `100%`) |
 | **height** | `Number or String` | Possible values for height can be `100%`, `300px` or `300` (by default is `auto`) |
 | **options** | `Object` | The configuration object, see options on [API (Reference)](https://apexcharts.com/docs/options/chart/type/) |
+| **chartRef** | `React.RefObject` | Pass a ref to get access to the underlying ApexCharts instance for imperative API calls |
 
 ## How to call methods of ApexCharts programmatically?
 Sometimes, you may want to call other methods of the core ApexCharts library, and you can do so on `ApexCharts` global variable directly
@@ -218,22 +265,28 @@ All other methods of ApexCharts can be called this way
 
 ## What's included
 
-The repository includes the following files and directories.
+The published package includes the following files.
 
 ```
 react-apexcharts/
 ├── dist/
-│   ├── react-apexcharts.cjs.js
-│   ├── react-apexcharts.esm.js
-│   ├── react-apexcharts.iife.min.js
-│   └── react-apexchart.min.js (backward compat)
-└── example/
-│   ├── src/
-│   ├── public/
-│   ├── package.json
-│   └── README.md
-└── src/
-    └── react-apexcharts.jsx
+│   ├── react-apexcharts.cjs.js          # CommonJS (default import)
+│   ├── react-apexcharts.esm.js          # ES Module (default import)
+│   ├── react-apexcharts.iife.min.js     # IIFE for browser <script> tags
+│   ├── react-apexcharts.min.js          # CommonJS (backward compat alias)
+│   ├── react-apexcharts-server.esm.js   # react-apexcharts/server
+│   ├── react-apexcharts-hydrate.esm.js  # react-apexcharts/hydrate
+│   ├── react-apexcharts-core.cjs.js     # react-apexcharts/core (CJS)
+│   ├── react-apexcharts-core.esm.js     # react-apexcharts/core (ESM)
+│   ├── react-apexcharts-core-server.esm.js   # react-apexcharts/core/server
+│   └── react-apexcharts-core-hydrate.esm.js  # react-apexcharts/core/hydrate
+└── types/
+    ├── react-apexcharts.d.ts
+    ├── react-apexcharts-server.d.ts
+    ├── react-apexcharts-hydrate.d.ts
+    ├── react-apexcharts-core.d.ts
+    ├── react-apexcharts-core-server.d.ts
+    └── react-apexcharts-core-hydrate.d.ts
 ```
 
 ## Development

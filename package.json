@@ -1,6 +1,6 @@
 {
   "name": "react-apexcharts",
-  "version": "2.0.1",
+  "version": "2.1.0",
   "description": "React.js wrapper for ApexCharts with SSR support",
   "main": "dist/react-apexcharts.cjs.js",
   "module": "dist/react-apexcharts.esm.js",
@@ -19,6 +19,19 @@
     "./hydrate": {
       "types": "./types/react-apexcharts-hydrate.d.ts",
       "import": "./dist/react-apexcharts-hydrate.esm.js"
+    },
+    "./core": {
+      "import": "./dist/react-apexcharts-core.esm.js",
+      "require": "./dist/react-apexcharts-core.cjs.js",
+      "types": "./types/react-apexcharts-core.d.ts"
+    },
+    "./core/server": {
+      "types": "./types/react-apexcharts-core-server.d.ts",
+      "import": "./dist/react-apexcharts-core-server.esm.js"
+    },
+    "./core/hydrate": {
+      "types": "./types/react-apexcharts-core-hydrate.d.ts",
+      "import": "./dist/react-apexcharts-core-hydrate.esm.js"
     }
   },
   "files": [
@@ -53,7 +66,7 @@
     "prop-types": "^15.8.1"
   },
   "peerDependencies": {
-    "apexcharts": ">=5.6.0",
+    "apexcharts": ">=5.10.1",
     "react": ">=16.8.0"
   },
   "devDependencies": {
