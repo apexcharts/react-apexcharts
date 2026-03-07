@@ -1,31 +1,448 @@
+/* ─── Reset & Base ─────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
 body {
-  margin: 0;
-  padding: 0;
-  font-family: sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: 14px;
+  background: #f0f2f5;
+  color: #1a1a2e;
+  min-height: 100vh;
 }
 
-.app {
-  padding: 40px;
+/* ─── Root ─────────────────────────────────────────────────────── */
+.app-root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  transition: background 0.2s, color 0.2s;
 }
 
-.row {
-  max-width: 800px;
-  margin: 0 auto;
+.app-root.dark {
+  background: #0f1117;
+  color: #e2e8f0;
+}
+
+/* ─── Header ───────────────────────────────────────────────────── */
+.app-header {
   display: flex;
   align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+  height: 60px;
+  background: #fff;
+  border-bottom: 1px solid #e8ecf0;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  flex-shrink: 0;
 }
 
-button {
-  background: #F3F3F3;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  height: 40px;
-  width: 120px;
-  color: #333;
-  font-size: 14px;
+.dark .app-header {
+  background: #1a1d27;
+  border-bottom-color: #2d3148;
+}
+
+.app-header-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.apex-logo {
+  width: 36px;
+  height: 36px;
+  flex-shrink: 0;
+}
+
+.app-header-title {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+}
+
+.app-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: #1a1a2e;
+  letter-spacing: -0.2px;
+}
+
+.dark .app-title { color: #f1f5f9; }
+
+.app-subtitle {
+  font-size: 11px;
+  color: #94a3b8;
+  font-weight: 400;
+}
+
+.app-header-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.dark-mode-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  background: transparent;
+  color: #64748b;
   cursor: pointer;
-  position: relative;
-  display: inline-block;
-  left: 90px;
-  top: -7px;
+  transition: background 0.15s, border-color 0.15s, color 0.15s;
+}
+
+.dark-mode-btn:hover { background: #f1f5f9; color: #1a1a2e; }
+.dark .dark-mode-btn { border-color: #2d3148; color: #94a3b8; }
+.dark .dark-mode-btn:hover { background: #2d3148; color: #f1f5f9; }
+
+.dark-mode-btn svg { width: 16px; height: 16px; }
+
+.github-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  color: #64748b;
+  text-decoration: none;
+  transition: background 0.15s, border-color 0.15s, color 0.15s;
+}
+
+.github-link:hover { background: #f1f5f9; color: #1a1a2e; }
+.dark .github-link { border-color: #2d3148; color: #94a3b8; }
+.dark .github-link:hover { background: #2d3148; color: #f1f5f9; }
+.github-link svg { width: 16px; height: 16px; }
+
+/* ─── Tab Bar ──────────────────────────────────────────────────── */
+.tab-bar {
+  display: flex;
+  gap: 0;
+  padding: 0 24px;
+  background: #fff;
+  border-bottom: 1px solid #e8ecf0;
+  flex-shrink: 0;
+}
+
+.dark .tab-bar {
+  background: #1a1d27;
+  border-bottom-color: #2d3148;
+}
+
+.tab-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 20px;
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid transparent;
+  color: #64748b;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: color 0.15s, border-color 0.15s;
+  white-space: nowrap;
+  margin-bottom: -1px;
+}
+
+.tab-btn:hover { color: #1a1a2e; }
+.dark .tab-btn:hover { color: #f1f5f9; }
+
+.tab-btn.active {
+  color: #008FFB;
+  border-bottom-color: #008FFB;
+}
+
+.tab-badge {
+  font-size: 10px;
+  font-weight: 600;
+  font-family: "SF Mono", "Fira Code", monospace;
+  background: #f0f7ff;
+  color: #008FFB;
+  border: 1px solid #bfdbfe;
+  border-radius: 4px;
+  padding: 2px 6px;
+  letter-spacing: 0;
+}
+
+.dark .tab-badge {
+  background: #1e2d42;
+  border-color: #1d4ed8;
+  color: #60a5fa;
+}
+
+/* ─── Body Layout ──────────────────────────────────────────────── */
+.app-body {
+  display: flex;
+  flex: 1;
+  min-height: 0;
+}
+
+/* ─── Sidebar ──────────────────────────────────────────────────── */
+.sidebar {
+  width: 180px;
+  flex-shrink: 0;
+  background: #fff;
+  border-right: 1px solid #e8ecf0;
+  padding: 20px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  position: sticky;
+  top: 109px;
+  height: calc(100vh - 109px);
+  overflow-y: auto;
+}
+
+.dark .sidebar {
+  background: #1a1d27;
+  border-right-color: #2d3148;
+}
+
+.sidebar-label {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  color: #94a3b8;
+  padding: 0 8px 10px;
+}
+
+.sidebar-item {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 6px;
+  background: transparent;
+  color: #475569;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+
+.sidebar-item:hover {
+  background: #f1f5f9;
+  color: #1a1a2e;
+}
+
+.dark .sidebar-item { color: #94a3b8; }
+.dark .sidebar-item:hover { background: #2d3148; color: #f1f5f9; }
+
+.sidebar-item.active {
+  background: #eff6ff;
+  color: #008FFB;
+  font-weight: 600;
+}
+
+.dark .sidebar-item.active {
+  background: #1e2d42;
+  color: #60a5fa;
+}
+
+/* ─── Chart Area ───────────────────────────────────────────────── */
+.chart-area {
+  flex: 1;
+  padding: 32px;
+  overflow-y: auto;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+/* ─── Chart Card ───────────────────────────────────────────────── */
+.chart-card {
+  background: #fff;
+  border: 1px solid #e8ecf0;
+  border-radius: 12px;
+  padding: 24px 28px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+  width: 100%;
+  max-width: 700px;
+}
+
+.dark .chart-card {
+  background: #1a1d27;
+  border-color: #2d3148;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.3);
+}
+
+.chart-card-header {
+  margin-bottom: 20px;
+}
+
+.chart-card-title {
+  font-size: 17px;
+  font-weight: 700;
+  color: #1a1a2e;
+  margin-bottom: 4px;
+}
+
+.dark .chart-card-title { color: #f1f5f9; }
+
+.chart-card-desc {
+  font-size: 13px;
+  color: #64748b;
+}
+
+/* ─── Tree-shaking card extras ─────────────────────────────────── */
+.ts-meta {
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.ts-imports {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.ts-import-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 11px;
+  font-weight: 600;
+  font-family: "SF Mono", "Fira Code", monospace;
+  background: #f0fdf4;
+  color: #16a34a;
+  border: 1px solid #bbf7d0;
+  border-radius: 4px;
+  padding: 3px 8px;
+}
+
+.dark .ts-import-badge {
+  background: #14261e;
+  border-color: #166534;
+  color: #4ade80;
+}
+
+.ts-import-badge::before {
+  content: "import";
+  color: #94a3b8;
+  font-weight: 400;
+  margin-right: 4px;
+}
+
+.ts-code-block {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 14px 16px;
+  font-family: "SF Mono", "Fira Code", monospace;
+  font-size: 12px;
+  line-height: 1.7;
+  color: #334155;
+  overflow-x: auto;
+  white-space: pre;
+}
+
+.dark .ts-code-block {
+  background: #0f1117;
+  border-color: #2d3148;
+  color: #94a3b8;
+}
+
+/* ─── Live Update (ChartUpdate) ────────────────────────────────── */
+.chart-update-card {
+  background: #fff;
+  border: 1px solid #e8ecf0;
+  border-radius: 12px;
+  padding: 24px 28px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+  width: 100%;
+  max-width: 700px;
+}
+
+.dark .chart-update-card {
+  background: #1a1d27;
+  border-color: #2d3148;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.3);
+}
+
+.chart-update-header {
+  margin-bottom: 20px;
+}
+
+.chart-update-title {
+  font-size: 17px;
+  font-weight: 700;
+  color: #1a1a2e;
+  margin-bottom: 4px;
+}
+
+.dark .chart-update-title { color: #f1f5f9; }
+
+.chart-update-desc {
+  font-size: 13px;
+  color: #64748b;
+}
+
+.update-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 20px;
+  padding: 9px 18px;
+  background: #008FFB;
+  color: #fff;
+  border: none;
+  border-radius: 7px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s, transform 0.1s;
+}
+
+.update-btn:hover { background: #0077d9; }
+.update-btn:active { transform: scale(0.97); }
+
+.update-btn svg {
+  width: 14px;
+  height: 14px;
+}
+
+.charts-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.charts-row {
+  display: flex;
+  gap: 24px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+/* ─── Loading ──────────────────────────────────────────────────── */
+.chart-loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 60px;
+  color: #94a3b8;
+  font-size: 13px;
+}
+
+/* ─── Responsive ───────────────────────────────────────────────── */
+@media (max-width: 640px) {
+  .sidebar {
+    display: none;
+  }
+  .chart-area {
+    padding: 20px 16px;
+  }
+  .tab-btn { padding: 10px 14px; font-size: 12px; }
+  .tab-badge { display: none; }
 }

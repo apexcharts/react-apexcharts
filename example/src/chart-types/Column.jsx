@@ -10,8 +10,12 @@ export default function Column() {
   };
 
   return (
-    <div className="column">
-      <Chart options={options} series={series} type="bar" width="500" />
+    <div className="chart-card">
+      <div className="chart-card-header">
+        <div className="chart-card-title">Column Chart</div>
+        <div className="chart-card-desc">Vertical column chart with daily values.</div>
+      </div>
+      <Chart options={options} series={series} type="bar" width="100%" />
     </div>
   );
 }

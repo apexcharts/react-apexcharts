@@ -13,8 +13,12 @@ export default function Line() {
   };
 
   return (
-    <div className="line">
-      <Chart options={options} series={series} type="line" width="500" />
+    <div className="chart-card">
+      <div className="chart-card-header">
+        <div className="chart-card-title">Line Chart</div>
+        <div className="chart-card-desc">Smooth line chart with weekly data points.</div>
+      </div>
+      <Chart options={options} series={series} type="line" width="100%" />
     </div>
   );
 }

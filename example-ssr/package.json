@@ -1,7 +1,7 @@
 {
   "name": "react-apexcharts-ssr-example",
   "version": "1.0.0",
-  "description": "Next.js SSR example using react-apexcharts 2.0.0",
+  "description": "Next.js SSR example",
   "scripts": {
     "dev": "next dev",
     "build": "next build",

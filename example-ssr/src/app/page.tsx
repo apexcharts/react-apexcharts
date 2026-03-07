@@ -125,11 +125,11 @@ export default function Home() {
 
   return (
     <main>
-      <h1>React ApexCharts 2.0.0 - Next.js SSR Example</h1>
+      <h1>React ApexCharts - Next.js SSR Example</h1>
 
       <div className="info-box">
         <p>
-          This example demonstrates how to use <code>react-apexcharts 2.0.0</code> with Next.js 14+ App Router and Server-Side Rendering.
+          This example demonstrates how to use <code>react-apexcharts 2.0.0+</code> with Next.js 14+ App Router and Server-Side Rendering.
         </p>
         <p>
           Charts are rendered on the client side using the <code>&apos;use client&apos;</code> directive and Next.js <code>dynamic</code> import with <code>ssr: false</code>.
@@ -137,7 +137,7 @@ export default function Home() {
       </div>
 
       <div style={{ marginBottom: '2rem', padding: '1.5rem', background: 'white', borderRadius: '8px', border: '2px solid #10b981' }}>
-        <h2 style={{ marginTop: 0, color: '#059669' }}>🖥️ Server Component Example</h2>
+        <h2 style={{ marginTop: 0, color: '#059669' }}>Server Component Example</h2>
         <p style={{ color: '#047857', marginBottom: '1rem' }}>
           Want to fetch data on the server? Check out the <Link href="/server-data" style={{ color: '#059669', textDecoration: 'underline' }}>Server Component example</Link> to see how to combine server-side data fetching with client-side chart rendering.
         </p>

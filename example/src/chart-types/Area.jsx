@@ -20,8 +20,12 @@ export default function Area() {
   };
 
   return (
-    <div className="area">
-      <Chart options={options} series={series} type="area" width="500" />
+    <div className="chart-card">
+      <div className="chart-card-header">
+        <div className="chart-card-title">Area Chart</div>
+        <div className="chart-card-desc">Multi-series area chart showing two data sets over a week.</div>
+      </div>
+      <Chart options={options} series={series} type="area" width="100%" />
     </div>
   );
 }

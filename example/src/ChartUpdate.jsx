@@ -194,37 +194,27 @@ export default function ChartUpdate() {
   };
 
   return (
-    <div className="app">
-      <div className="row">
-        <div className="col mixed-chart">
-          <Chart options={mixedChart.options} series={mixedChart.series} type="line" width="500" />
+    <div className="chart-update-card">
+      <div className="chart-update-header">
+        <div className="chart-update-title">Live Update</div>
+        <div className="chart-update-desc">Click the button to randomize all three charts simultaneously.</div>
+      </div>
+      <div className="charts-grid">
+        <div className="charts-row">
+          <Chart options={mixedChart.options} series={mixedChart.series} type="line" width="460" />
+          <Chart options={radialChart.options} series={radialChart.series} type="radialBar" width="220" />
         </div>
-
-        <div className="col radial-chart">
-          <Chart
-            options={radialChart.options}
-            series={radialChart.series}
-            type="radialBar"
-            width="280"
-          />
+        <div className="charts-row">
+          <Chart options={barChart.options} height={140} series={barChart.series} type="bar" width={460} />
         </div>
       </div>
-
-      <div className="row">
-        <div className="col percentage-chart">
-          <Chart
-            options={barChart.options}
-            height={140}
-            series={barChart.series}
-            type="bar"
-            width={500}
-          />
-        </div>
-
-        <p className="col">
-          <button onClick={updateCharts}>Update!</button>
-        </p>
-      </div>
+      <button className="update-btn" onClick={updateCharts}>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+          <polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/>
+          <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/>
+        </svg>
+        Randomize
+      </button>
     </div>
   );
 }

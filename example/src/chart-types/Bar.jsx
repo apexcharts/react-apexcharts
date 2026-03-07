@@ -23,8 +23,12 @@ export default function Bar() {
   };
 
   return (
-    <div className="bar">
-      <Chart options={options} series={series} type="bar" width="500" />
+    <div className="chart-card">
+      <div className="chart-card-header">
+        <div className="chart-card-title">Bar Chart</div>
+        <div className="chart-card-desc">Horizontal bar chart with daily values.</div>
+      </div>
+      <Chart options={options} series={series} type="bar" width="100%" />
     </div>
   );
 }
