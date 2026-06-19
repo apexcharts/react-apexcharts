@@ -1,6 +1,6 @@
 {
   "name": "react-apexcharts",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "description": "React.js wrapper for ApexCharts with SSR support",
   "main": "dist/react-apexcharts.cjs.js",
   "module": "dist/react-apexcharts.esm.js",

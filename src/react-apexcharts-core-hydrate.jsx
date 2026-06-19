@@ -63,8 +63,16 @@ export default function ReactApexChartsHydrate({
 
     return () => {
       if (chartInstance.current) {
-        chartInstance.current.destroy();
-        chartInstance.current = null;
+        try {
+          chartInstance.current.destroy();
+        } catch (e) {
+          // if the chart was torn down in a bad state (e.g. its element was
+          // detached before render completed), destroy() can throw. swallow it
+          // so a teardown error never crashes the React tree.
+          // see https://github.com/apexcharts/react-apexcharts/issues/602
+        } finally {
+          chartInstance.current = null;
+        }
       }
     };
   }, [clientOptions]);

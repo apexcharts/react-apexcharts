@@ -100,8 +100,17 @@ export default function Charts({
     prevOptionsRef.current = options;
 
     return () => {
-      if (chart.current && typeof chart.current.destroy === "function") {
-        chart.current.destroy();
+      try {
+        if (chart.current && typeof chart.current.destroy === "function") {
+          chart.current.destroy();
+        }
+      } catch (e) {
+        // if the chart was torn down in a bad state (e.g. its element was
+        // detached from the DOM before render completed), destroy() can throw.
+        // swallow it so a teardown error never crashes the React tree.
+        // see https://github.com/apexcharts/react-apexcharts/issues/602
+      } finally {
+        chart.current = null;
       }
     };
   }, []);
