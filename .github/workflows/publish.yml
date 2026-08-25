@@ -49,13 +49,16 @@ jobs:
           fi
           echo "Version $PKG_VERSION confirmed"
 
+      # Node 24 ships npm 11.17, comfortably past the 11.5.1 that trusted
+      # publishing needs, so there is no `npm install -g npm@latest` step. That
+      # step is a trap on a pinned Node: npm@latest is npm 12, whose engines are
+      # ^22.22.2 || ^24.15.0 || >=26.0.0, so it refuses to install on Node 20 and
+      # fails the release before it builds anything. Observed for real on
+      # stencil-apexcharts 3.1.1, which had the identical pairing.
       - uses: actions/setup-node@v4
         if: steps.check.outputs.triggered == 'true'
         with:
-          node-version: "20"
-
-      - run: npm install -g npm@latest
-        if: steps.check.outputs.triggered == 'true'
+          node-version: "24"
 
       - run: npm install
         if: steps.check.outputs.triggered == 'true'
