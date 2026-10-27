@@ -8,6 +8,7 @@ jest.mock('apexcharts/core', () => ({
 }))
 
 const ApexCharts = require('apexcharts/core')
+const react19OnlyIt = Number(React.version.split('.')[0]) >= 19 ? it : it.skip
 
 describe('ReactApexChartsHydrate Core (Tree-shaking variant)', () => {
   let mockChartInstance
@@ -27,8 +28,11 @@ describe('ReactApexChartsHydrate Core (Tree-shaking variant)', () => {
     jest.restoreAllMocks()
   })
 
-  it('should hydrate chart on mount', async () => {
-    const { container } = render(<ReactApexChartsHydrate />)
+  react19OnlyIt('should hydrate with the internal element ref when a React ref prop is supplied', async () => {
+    const forwardedRef = React.createRef()
+    const { container } = render(
+      <ReactApexChartsHydrate ref={forwardedRef} />
+    )
 
     await waitFor(() => {
       expect(ApexCharts.hydrate).toHaveBeenCalledTimes(1)
@@ -45,6 +49,7 @@ describe('ReactApexChartsHydrate Core (Tree-shaking variant)', () => {
         }),
       })
     )
+    expect(forwardedRef.current).toBeNull()
   })
 
   it('should apply className to container', () => {

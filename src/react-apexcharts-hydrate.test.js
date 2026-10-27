@@ -8,6 +8,7 @@ jest.mock('apexcharts/client', () => ({
 }))
 
 const ApexCharts = require('apexcharts/client')
+const react19OnlyIt = Number(React.version.split('.')[0]) >= 19 ? it : it.skip
 
 describe('ReactApexChartsHydrate', () => {
   let mockChartInstance
@@ -196,8 +197,9 @@ describe('ReactApexChartsHydrate', () => {
     })
   })
 
-  it('should hydrate with correct element reference', async () => {
-    const { container } = render(<ReactApexChartsHydrate />)
+  react19OnlyIt('should hydrate with the internal element ref when a React ref prop is supplied', async () => {
+    const forwardedRef = React.createRef()
+    const { container } = render(<ReactApexChartsHydrate ref={forwardedRef} />)
 
     await waitFor(() => {
       const chartDiv = container.querySelector('div')
@@ -206,6 +208,8 @@ describe('ReactApexChartsHydrate', () => {
         expect.any(Object)
       )
     })
+
+    expect(forwardedRef.current).toBeNull()
   })
 
   it('should handle empty clientOptions', async () => {

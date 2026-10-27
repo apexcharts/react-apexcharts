@@ -67,7 +67,7 @@ function deepEqual(obj1, obj2, visited = new WeakSet()) {
 }
 
 // keys to omit when spreading restProps to the container div
-const CHART_PROP_KEYS = ["type", "series", "options", "width", "height", "chartRef"];
+const CHART_PROP_KEYS = ["type", "series", "options", "width", "height", "chartRef", "ref"];
 
 export default function Charts({
   type = "line",

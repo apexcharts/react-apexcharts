@@ -1,11 +1,14 @@
 import React from 'react'
 import { createRoot } from 'react-dom/client'
+import { render } from '@testing-library/react'
+import ApexCharts from 'apexcharts/client'
 import Chart from './react-apexcharts.jsx'
 
 // Mock ApexCharts client module - simplified for testing
 jest.mock('apexcharts/client')
 
 describe('ReactApexCharts (Client Component)', () => {
+  const react19OnlyIt = Number(React.version.split('.')[0]) >= 19 ? it : it.skip
   const defaultProps = {
     type: 'bar',
     options: {
@@ -58,5 +61,16 @@ describe('ReactApexCharts (Client Component)', () => {
     const root = createRoot(div);
     root.render(<Chart {...minimalProps} />);
     root.unmount();
+  })
+
+  react19OnlyIt('does not forward a React ref to the chart container', () => {
+    const forwardedRef = React.createRef()
+    const { container } = render(<Chart {...defaultProps} ref={forwardedRef} />)
+
+    expect(ApexCharts).toHaveBeenCalledWith(
+      container.querySelector('div'),
+      expect.any(Object)
+    )
+    expect(forwardedRef.current).toBeNull()
   })
 })

@@ -1,11 +1,14 @@
 import React from 'react'
 import { createRoot } from 'react-dom/client'
+import { render } from '@testing-library/react'
+import ApexCharts from 'apexcharts/core'
 import Chart from './react-apexcharts-core.jsx'
 
 // Mock ApexCharts core module - for tree-shaking variant
 jest.mock('apexcharts/core')
 
 describe('ReactApexCharts Core (Tree-shaking variant)', () => {
+  const react19OnlyIt = Number(React.version.split('.')[0]) >= 19 ? it : it.skip
   const defaultProps = {
     type: 'bar',
     options: {
@@ -63,5 +66,16 @@ describe('ReactApexCharts Core (Tree-shaking variant)', () => {
   it('imports from apexcharts/core instead of apexcharts/client', () => {
     // Verify the core module is being used (not the full bundle)
     expect(jest.isMockFunction(require('apexcharts/core').default || require('apexcharts/core'))).toBe(true)
+  })
+
+  react19OnlyIt('does not forward a React ref to the chart container', () => {
+    const forwardedRef = React.createRef()
+    const { container } = render(<Chart {...defaultProps} ref={forwardedRef} />)
+
+    expect(ApexCharts).toHaveBeenCalledWith(
+      container.querySelector('div'),
+      expect.any(Object)
+    )
+    expect(forwardedRef.current).toBeNull()
   })
 })

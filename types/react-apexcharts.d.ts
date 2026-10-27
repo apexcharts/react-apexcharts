@@ -28,7 +28,8 @@ declare module "react-apexcharts" {
     height?: string | number;
     options?: ApexOptions;
     chartRef?: React.RefObject<ApexCharts | null>;
+    ref?: never;
     [key: string]: any;
   }
-  export default class ReactApexChart extends React.Component<Props> {}
+  export default function ReactApexChart(props: Props): React.ReactElement;
 }
