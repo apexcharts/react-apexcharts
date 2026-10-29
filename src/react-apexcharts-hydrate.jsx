@@ -13,7 +13,7 @@ function omit(obj, keysToRemove) {
 }
 
 // keys to omit when spreading restProps to the container div
-const CHART_PROP_KEYS = ["clientOptions", "className"];
+const CHART_PROP_KEYS = ["clientOptions", "className", "ref"];
 
 /**
  * Client Component for hydrating server-rendered charts
