@@ -1,15 +1,8 @@
 language: node_js
 node_js:
   - "stable"
-env:
-  - REACT_VERSION=18.3.1
-  - REACT_VERSION=19.3.0
 cache:
   directories:
   - node_modules
-install:
-  - npm ci
-  - npm install --no-save --package-lock=false --no-audit --no-fund "react@$REACT_VERSION" "react-dom@$REACT_VERSION" "react-test-renderer@$REACT_VERSION" apexcharts@5.10.1
 script:
-  - npm test
   - npm run build

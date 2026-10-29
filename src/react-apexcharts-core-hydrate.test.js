@@ -28,11 +28,8 @@ describe('ReactApexChartsHydrate Core (Tree-shaking variant)', () => {
     jest.restoreAllMocks()
   })
 
-  react19OnlyIt('should hydrate with the internal element ref when a React ref prop is supplied', async () => {
-    const forwardedRef = React.createRef()
-    const { container } = render(
-      <ReactApexChartsHydrate ref={forwardedRef} />
-    )
+  it('should hydrate chart on mount', async () => {
+    const { container } = render(<ReactApexChartsHydrate />)
 
     await waitFor(() => {
       expect(ApexCharts.hydrate).toHaveBeenCalledTimes(1)
@@ -49,6 +46,21 @@ describe('ReactApexChartsHydrate Core (Tree-shaking variant)', () => {
         }),
       })
     )
+  })
+
+  react19OnlyIt('should hydrate with the internal element ref when a React ref prop is supplied', async () => {
+    const forwardedRef = React.createRef()
+    const { container } = render(
+      <ReactApexChartsHydrate ref={forwardedRef} />
+    )
+
+    await waitFor(() => {
+      expect(ApexCharts.hydrate).toHaveBeenCalledWith(
+        container.querySelector('div'),
+        expect.any(Object)
+      )
+    })
+
     expect(forwardedRef.current).toBeNull()
   })
 

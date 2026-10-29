@@ -7,8 +7,9 @@ import Chart from './react-apexcharts-core.jsx'
 // Mock ApexCharts core module - for tree-shaking variant
 jest.mock('apexcharts/core')
 
+const react19OnlyIt = Number(React.version.split('.')[0]) >= 19 ? it : it.skip
+
 describe('ReactApexCharts Core (Tree-shaking variant)', () => {
-  const react19OnlyIt = Number(React.version.split('.')[0]) >= 19 ? it : it.skip
   const defaultProps = {
     type: 'bar',
     options: {

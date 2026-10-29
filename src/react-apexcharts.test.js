@@ -7,8 +7,9 @@ import Chart from './react-apexcharts.jsx'
 // Mock ApexCharts client module - simplified for testing
 jest.mock('apexcharts/client')
 
+const react19OnlyIt = Number(React.version.split('.')[0]) >= 19 ? it : it.skip
+
 describe('ReactApexCharts (Client Component)', () => {
-  const react19OnlyIt = Number(React.version.split('.')[0]) >= 19 ? it : it.skip
   const defaultProps = {
     type: 'bar',
     options: {

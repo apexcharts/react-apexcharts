@@ -1,0 +1,48 @@
+name: Test
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        # devDependencies pin React 18, which strips `ref` before a function
+        # component sees it. React 19 passes `ref` through as a prop, so the
+        # ref-as-prop regression tests only run on the 19 leg.
+        react: ["18.3.1", "19.3.0"]
+    name: React ${{ matrix.react }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+          cache: npm
+
+      - run: npm ci
+
+      # Installing without the lockfile re-resolves the whole tree, which would
+      # float the apexcharts peer to its latest major. Pin it to the lockfile's
+      # version so this leg only differs from the other by React.
+      - name: Install React ${{ matrix.react }}
+        env:
+          REACT_VERSION: ${{ matrix.react }}
+        run: |
+          APEXCHARTS_VERSION=$(node -p "require('./package-lock.json').packages['node_modules/apexcharts'].version")
+          npm install --no-save --package-lock=false --no-audit --no-fund \
+            "react@$REACT_VERSION" "react-dom@$REACT_VERSION" "react-test-renderer@$REACT_VERSION" \
+            "apexcharts@$APEXCHARTS_VERSION"
+          node -p "'react ' + require('react/package.json').version + ', apexcharts ' + require('apexcharts/package.json').version"
+
+      - run: npm test
+
+      - run: npm run build

@@ -197,6 +197,18 @@ describe('ReactApexChartsHydrate', () => {
     })
   })
 
+  it('should hydrate with correct element reference', async () => {
+    const { container } = render(<ReactApexChartsHydrate />)
+
+    await waitFor(() => {
+      const chartDiv = container.querySelector('div')
+      expect(ApexCharts.hydrate).toHaveBeenCalledWith(
+        chartDiv,
+        expect.any(Object)
+      )
+    })
+  })
+
   react19OnlyIt('should hydrate with the internal element ref when a React ref prop is supplied', async () => {
     const forwardedRef = React.createRef()
     const { container } = render(<ReactApexChartsHydrate ref={forwardedRef} />)
