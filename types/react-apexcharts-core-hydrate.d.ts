@@ -20,6 +20,7 @@ declare module "react-apexcharts/core/hydrate" {
      */
     clientOptions?: ApexOptions;
     className?: string;
+    ref?: never;
     [key: string]: any;
   }
 
