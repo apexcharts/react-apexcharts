@@ -238,6 +238,50 @@ import Hydrate from 'react-apexcharts/core/hydrate' // Client hydration
 
 > **Note for Vite users:** Add `resolve: { dedupe: ['apexcharts'] }` to your `vite.config.js` to prevent Vite from loading two separate ApexCharts instances when mixing imports.
 
+### Using with Ignite UI
+
+From ApexCharts 8.8.0, charts can follow the Ignite UI theme on the page: its palette, text, gridlines, tooltips, font and light or dark variant. Import the add-on once, anywhere in your app, before the first chart renders. It is free and needs no license key.
+
+```js
+import 'apexcharts/features/ignite-ui'
+```
+
+It works with `react-apexcharts` and `react-apexcharts/core` alike. On a page that loads ApexCharts with a script tag, load `dist/features/ignite-ui.js` after `apexcharts.js` instead. Without the add-on the `--ig-*` tokens are ignored, with no error.
+
+To turn it off for one chart:
+
+```js
+const options = {
+  theme: { designSystem: false } // ignore the Ignite UI theme, keep the --apx-* tokens
+  // theme: { tokens: false }    // ignore the --apx-* tokens and the Ignite UI theme
+}
+```
+
+The Ignite UI theme ranks below everything you set:
+
+```
+explicit options  >  the chart's own CSS variables  >  --apx-* tokens  >  a named theme or palette  >  --ig-* tokens  >  defaults
+```
+
+Tokens are read on every render. After swapping the theme stylesheet at runtime, call `refreshTokens()` on the chart instance once the new stylesheet has loaded:
+
+```jsx
+const chartRef = useRef(null)
+
+// call from the new stylesheet's load handler
+function onThemeLoaded() {
+  chartRef.current?.refreshTokens()
+}
+
+return <Chart chartRef={chartRef} type="bar" series={series} options={options} />
+```
+
+`ApexCharts.exec('<chart id>', 'refreshTokens')` reaches it by chart id as well.
+
+The theme names its font but does not load it, so include the font's stylesheet on the page, as the Ignite UI setup already asks; the chart re-measures once the font has loaded.
+
+With `chart.injectStyleSheet: false` in the light DOM (for example under a strict CSP), link `apexcharts/dist/apexcharts-ignite-ui.css` after `apexcharts.css`, or tooltips and menus keep their default colors.
+
 ## Props
 
 
