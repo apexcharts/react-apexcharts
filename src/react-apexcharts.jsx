@@ -85,11 +85,11 @@ export default function Charts({
   const internalChartRef = useRef(null);
   const chart = chartRef || internalChartRef;
 
-  const getConfig = () => {
-    const newOptions = {
-      chart: { type, height, width },
-      series,
-    };
+  // series stays out of an options-only update: core reads series in an
+  // updateOptions() payload as new data and drops the user's zoom with it
+  const getConfig = (withSeries = true) => {
+    const newOptions = { chart: { type, height, width } };
+    if (withSeries) newOptions.series = series;
     return extend(options, newOptions);
   };
 
@@ -132,7 +132,7 @@ export default function Charts({
     if (seriesChanged || optionsChanged) {
       if (!seriesChanged) {
         // only options or size changed
-        chart.current.updateOptions(getConfig());
+        chart.current.updateOptions(getConfig(false));
       } else if (!optionsChanged) {
         // only series changed
         chart.current.updateSeries(series);
